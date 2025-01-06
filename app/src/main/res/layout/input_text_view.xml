@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_input_field_basic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_FFFFFF">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/inputfield_basic_text_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_container"
+            android:layout_marginTop="@dimen/margin_container"
+            android:textAppearance="@style/Label"
+            android:textColor="@color/black_484848"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/tools_text_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/inputfield_basic_text_mandatory_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_container"
+            android:layout_marginStart="@dimen/margin_component"
+            android:text="*"
+            android:textAppearance="@style/Label"
+            android:textColor="@color/red_F44336"
+            android:visibility="gone"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/inputfield_basic_text_label"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/inputfield_basic_input_basic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:imeOptions="actionDone"
+            android:inputType=""
+            android:lines="1"
+            android:maxLines="1"
+            android:textAppearance="@style/Large"
+            android:textColor="@color/black_484848"
+            android:textColorHint="@color/gray_ADABAB"
+            android:theme="@style/InputBase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputfield_basic_text_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

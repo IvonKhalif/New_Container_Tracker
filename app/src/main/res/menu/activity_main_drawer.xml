@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/scanner_title" />
+        <item
+            android:id="@+id/nav_container"
+            android:icon="@drawable/container"
+            android:title="@string/menu_container" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/history"
+            android:title="@string/menu_history" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/analytics"
+            android:title="@string/menu_report" />
+        <item
+            android:id="@+id/nav_scan_local_sales"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/scanner_title" />
+        <item
+            android:id="@+id/nav_scan_flexi"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/scan_flexi_title" />
+        <item
+            android:id="@+id/nav_scan_marking"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/scan_marking_title" />
+        <item
+            android:id="@+id/nav_scan_seal"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/scan_seal_title" />
+        <item
+            android:id="@+id/nav_scan_isotank"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/scan_isotank_title" />
+        <item
+            android:id="@+id/nav_container_repair"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/container_repair_title" />
+        <item
+            android:id="@+id/nav_container_tally"
+            android:icon="@drawable/barcode_scanner"
+            android:title="@string/scanner_title" />
+    </group>
+</menu>

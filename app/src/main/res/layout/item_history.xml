@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_container"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_account_circle"
+                app:layout_constraintEnd_toStartOf="@id/container_name_history"
+                app:layout_constraintStart_toStartOf="@+id/guideline_begin"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/container_name_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:textAppearance="@style/Medium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/text_seal_number"
+                app:layout_constraintStart_toEndOf="@id/image_container"
+                app:layout_constraintTop_toTopOf="@+id/image_container"
+                tools:text="Nama Code Container"
+                tools:textColor="@color/black_484848" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_placeholder"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/placeholder"
+                app:layout_constraintBottom_toBottomOf="@+id/post_name_history"
+                app:layout_constraintEnd_toEndOf="@+id/image_container"
+                app:layout_constraintStart_toStartOf="@+id/image_container"
+                app:layout_constraintTop_toTopOf="@+id/post_name_history" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/post_name_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/margin_component"
+                android:textAppearance="@style/Micro"
+                app:layout_constraintStart_toEndOf="@id/image_placeholder"
+                app:layout_constraintTop_toBottomOf="@+id/container_name_history"
+                tools:text="Nama Post" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/date_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:textAppearance="@style/Small"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_damage_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_damage_count"
+                tools:text="01 Jan 2020" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_seal_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/ic_outline_lock_18dp"
+                android:gravity="center_vertical|end"
+                android:textAppearance="@style/Small"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/container_name_history"
+                app:layout_constraintTop_toTopOf="@+id/image_container"
+                tools:text="0100230230" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/margin_container"
+                android:layout_marginTop="8dp"
+                android:background="@color/stroke_EDEDED"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_placeholder" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_begin"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_center"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3333" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.666666" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/roof_side_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_component"
+                android:layout_marginBottom="@dimen/margin_container"
+                android:text="@string/roof_side_label"
+                android:textAppearance="@style/Small"
+                app:layout_constraintStart_toStartOf="@id/guideline_begin"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/roof_side_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="2dp"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Small"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/roof_side_label"
+                app:layout_constraintTop_toTopOf="@id/roof_side_label"
+                tools:drawableEnd="@drawable/ic_check_18dp"
+                tools:text="Bulging" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/door_side_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/door_side_label"
+                android:textAppearance="@style/Small"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/guideline_center"
+                app:layout_constraintTop_toTopOf="@id/roof_side_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/door_side_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="2dp"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Small"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/door_side_label"
+                app:layout_constraintTop_toTopOf="@+id/door_side_label"
+                tools:drawableEnd="@drawable/ic_check_18dp"
+                tools:text="Bulging" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/right_side_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_component"
+                android:text="@string/right_side_label"
+                android:textAppearance="@style/Small"
+                app:layout_constraintStart_toStartOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@id/roof_side_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/right_side_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Small"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/right_side_label"
+                app:layout_constraintTop_toTopOf="@+id/right_side_label"
+                tools:drawableEnd="@drawable/ic_warning_18dp"
+                tools:text="Bulging" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/floor_side_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/floor_side_label"
+                android:textAppearance="@style/Small"
+                app:layout_constraintStart_toStartOf="@+id/guideline_begin"
+                app:layout_constraintTop_toBottomOf="@+id/roof_side_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/floor_side_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="2dp"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Small"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/floor_side_label"
+                app:layout_constraintTop_toTopOf="@id/floor_side_label"
+                tools:drawableEnd="@drawable/ic_check_18dp"
+                tools:text="@string/roof_side_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/back_side_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/back_side_label"
+                android:textAppearance="@style/Small"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/guideline_center"
+                app:layout_constraintTop_toBottomOf="@+id/door_side_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/back_side_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="2dp"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Small"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/back_side_label"
+                app:layout_constraintTop_toTopOf="@+id/back_side_label"
+                tools:drawableEnd="@drawable/ic_check_18dp"
+                tools:text="@string/door_side_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/left_side_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/margin_component"
+                android:text="@string/left_side_label"
+                android:textAppearance="@style/Small"
+                app:layout_constraintStart_toStartOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/right_side_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/left_side_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Small"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/left_side_label"
+                app:layout_constraintTop_toTopOf="@+id/left_side_label"
+                tools:drawableEnd="@drawable/ic_warning_18dp"
+                tools:text="@string/right_side_label" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_condition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="floor_side_value, back_side_value, left_side_value" />
+
+            <View
+                android:id="@+id/divider_damaged_count"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:background="@color/stroke_EDEDED"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier_condition" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_good_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:drawableStart="@drawable/ic_check_18dp"
+                android:drawablePadding="4dp"
+                android:textAppearance="@style/Small"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline_begin"
+                app:layout_constraintTop_toBottomOf="@+id/divider_damaged_count"
+                tools:text="2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_damage_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:drawableStart="@drawable/ic_warning_18dp"
+                android:drawablePadding="4dp"
+                android:textAppearance="@style/Small"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/tv_good_count"
+                app:layout_constraintTop_toBottomOf="@+id/divider_damaged_count"
+                tools:text="2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,98 @@
+[versions]
+agp = "8.7.1"
+kotlin = "1.9.24"
+kotlinGradlePluginVersion = "2.1.0-Beta2"
+buildGradleVersion = "3.0.1"
+parcelize = "2.1.0-Beta2"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activityKtxVersion = "1.9.3"
+fragmentKtxVersion = "1.8.4"
+preferenceKtxVersion = "1.2.1"
+constraintLayoutVersion = "2.1.4"
+navigationFragmentKtxVersion = "2.8.3"
+navigationUiKtxVersion = "2.8.3"
+glideVersion = "4.16.0"
+shimmerVersion = "0.5.0"
+lottieVersion = "6.5.2"
+zxingVersion = "1.9.8"
+coroutinesVersion = "1.9.0"
+lifecycleVersion = "2.8.6"
+extensionsVersion = "2.2.0"
+koinVersion = "3.5.6"
+koinViewModelVersion = "2.2.3"
+gsonVersion = "2.11.0"
+retrofit2Version = "2.11.0"
+okhttpVersion = "5.0.0-alpha.14"
+networkResponseAdapterVersion = "5.0.0"
+threetenabpVersion = "1.3.1"
+compressorVersion = "3.0.1"
+cameraVersion = "1.3.4"
+multidexVersion = "2.0.1"
+chuckerVersion = "4.0.0"
+rxbindingVersion = "4.0.0"
+kaptVersion = "2.0.21"
+zoomyVersion = "1.0.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePluginVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtxVersion" }
+fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtxVersion" }
+preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preferenceKtxVersion" }
+navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtxVersion" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayoutVersion" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
+glide-okhttp = { group = "com.github.bumptech.glide", name = "okhttp3-integration", version.ref = "glideVersion" }
+shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmerVersion" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottieVersion" }
+zxing = { group = "me.dm7.barcodescanner", name = "zxing", version.ref = "zxingVersion" }
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
+viewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
+liveData = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
+runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
+commonJava = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycleVersion" }
+lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "lifecycleVersion" }
+lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleVersion" }
+viewmodel-savedstate = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifecycleVersion" }
+lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "extensionsVersion" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }
+koin-viewmodel = { group = "io.insert-koin", name = "koin-androidx-viewmodel", version.ref = "koinViewModelVersion" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koinVersion" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2Version" }
+converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit2Version" }
+converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit2Version" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttpVersion" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpVersion" }
+networkResponseAdapter = { group = "com.github.haroldadmin", name = "NetworkResponseAdapter", version.ref = "networkResponseAdapterVersion" }
+threetenabp = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threetenabpVersion" }
+compressor = { group = "id.zelory", name = "compressor", version.ref = "compressorVersion" }
+camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraVersion" }
+camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraVersion" }
+camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraVersion" }
+camera-extensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "cameraVersion" }
+camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraVersion" }
+multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidexVersion" }
+rxbinding = { group = "com.jakewharton.rxbinding4", name = "rxbinding", version.ref = "rxbindingVersion" }
+chucker-debug = { group = "com.github.chuckerteam.", name = "library", version.ref = "chuckerVersion" }
+chucker-release = { group = "com.github.chuckerteam.", name = "library-no-op", version.ref = "chuckerVersion" }
+zoomy = { group = "io.github.imablanco", name = "zoomy", version.ref = "zoomyVersion" }
+
+kotlinParcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "parcelize" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "parcelize" }
+

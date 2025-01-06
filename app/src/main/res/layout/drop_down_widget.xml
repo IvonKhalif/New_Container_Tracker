@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/drop_select_basic_text_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_container"
+            android:layout_marginEnd="@dimen/margin_component"
+            android:drawablePadding="@dimen/margin_component"
+            android:text="@string/tools_text_label"
+            android:textAppearance="@style/Label"
+            android:textColor="@color/black_484848"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/drop_select_basic_text_mandatory_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_component"
+            android:text="*"
+            android:textAppearance="@style/Label"
+            android:textColor="@color/red_F44336"
+            android:visibility="gone"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/drop_select_basic_text_caption"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/drop_select_basic_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_container"
+            android:layout_marginTop="@dimen/margin_container"
+            android:layout_marginEnd="@dimen/margin_container"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/Large"
+            android:textColor="@color/black_484848"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/drop_select_basic_text_caption"
+            tools:text="Pilih" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/margin_container"
+            android:layout_marginEnd="@dimen/margin_container"
+            android:background="@color/stroke_EDEDED"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/drop_select_basic_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

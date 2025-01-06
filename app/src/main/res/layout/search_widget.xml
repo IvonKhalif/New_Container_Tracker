@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_appbar_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/input_search"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_container"
+            android:layout_marginTop="@dimen/margin_component"
+            android:layout_marginEnd="@dimen/margin_container"
+            android:layout_marginBottom="@dimen/margin_component"
+            android:background="@drawable/shape_white"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:lineSpacingExtra="3sp"
+            android:paddingStart="@dimen/margin_component"
+            android:paddingEnd="5dp"
+            android:capitalize="characters"
+            android:textAppearance="@style/Large"
+            android:textColor="@color/black_484848"
+            android:textColorHint="@color/smoke_E0E0E0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

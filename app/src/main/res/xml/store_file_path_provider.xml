@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <!-- path for storing cache file type (share) -->
+    <cache-path
+        name="cache"
+        path="." />
+
+</paths>

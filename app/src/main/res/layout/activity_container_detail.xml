@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="codeContainer"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.container.detail.ContainerDetailActivity">
+
+        <ImageView
+            android:id="@+id/image_container_qr"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:src="@drawable/container_scan" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_product_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_component"
+            android:layout_marginTop="@dimen/margin_component"
+            android:layout_marginEnd="@dimen/margin_component"
+            android:gravity="center"
+            android:text="@{codeContainer}"
+            android:textAppearance="@style/Title"
+            android:textColor="@color/black_484848"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_container_qr"
+            tools:text="Factory Outlet" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_print"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/icon_default"
+            android:background="@drawable/background_button_green"
+            android:enabled="false"
+            android:text="@string/general_action_print"
+            android:textAppearance="@style/Button"
+            android:textColor="@color/white_FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

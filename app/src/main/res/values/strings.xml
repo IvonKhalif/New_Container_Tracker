@@ -1,0 +1,177 @@
+<resources>
+    <string name="app_name">Container Tracker</string>
+
+    <!-- Permission Type -->
+    <string name="permission_type_post_notification">Notification</string>
+    <string name="permission_type_access_coarse_location">Coarse Location</string>
+    <string name="permission_type_access_fine_location">Accurate Location</string>
+    <string name="permission_type_read_contacts">Contact</string>
+    <string name="permission_type_call_phone">Phone Call</string>
+    <string name="permission_type_read_phone_state">Phone State</string>
+    <string name="permission_type_read_external_storage">Read Storage</string>
+    <string name="permission_type_write_external_storage">Write Storage</string>
+    <string name="permission_type_camera">Camera</string>
+    <string name="permission_type_microphone">Microphone</string>
+
+    <!--  General  -->
+    <string name="general_all">All</string>
+    <string name="general_action_ok">Ok</string>
+    <string name="general_not_ok">Not Ok</string>
+    <string name="general_action_yes">Yes</string>
+    <string name="general_action_no">No</string>
+    <string name="general_action_save">Save</string>
+    <string name="general_action_cancel">Cancel</string>
+    <string name="general_action_submit">Submit</string>
+    <string name="general_action_continue">Continue</string>
+    <string name="general_action_next">Next</string>
+    <string name="general_action_search">Search</string>
+    <string name="general_action_export">Export</string>
+    <string name="general_action_select">Select</string>
+    <string name="general_action_print">Print</string>
+    <string name="general_mandatory_caption">*</string>
+    <string name="version_format">Version %1$s</string>
+    <string name="general_error_message">Something went wrong. Please try again.</string>
+
+    <!--  Login  -->
+    <string name="login_user_name_label">Username</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_button_login_label">Sign In</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--  Logout  -->
+    <string name="logout_headline">Logout</string>
+    <string name="logout_subheadline">Are you sure you want to Logout?</string>
+
+    <!--  Home  -->
+    <string name="home_button_logout_label">Logout</string>
+    <string name="menu_camera">Scan</string>
+    <string name="menu_history">History</string>
+    <string name="menu_container">Container</string>
+    <string name="menu_report">Report</string>
+    <string name="home_container_laden_label">Container Laden</string>
+    <string name="home_container_export_label">Container Export</string>
+
+    <!--  History  -->
+    <string name="detail_container_title">Container Details</string>
+    <string name="history_serch_hint">Enter container code</string>
+    <string name="history_batch">Batch ID = %s</string>
+    <string name="history_seal_number">Seal Number = %s</string>
+    <string name="history_voyage_in">Voyage ID In = %s</string>
+    <string name="history_voyage_out">Voyage ID Out = %s</string>
+    <string name="history_so_number">SO Number = %s</string>
+    <string name="history_empty_state_label">No container data has been recorded yet</string>
+    <string name="roof_side_label">Roof :</string>
+    <string name="floor_side_label">Floor :</string>
+    <string name="door_side_label">Door :</string>
+    <string name="back_side_label">Back :</string>
+    <string name="left_side_label">Left :</string>
+    <string name="right_side_label">Right :</string>
+    <string name="damaged_total">Total kerusakan %s sisi</string>
+
+    <!-- History Container Detail -->
+    <string name="history_container_condition">Picture Condition</string>
+
+    <!--  Location  -->
+    <string name="select_Location_Label">Select Location</string>
+
+    <!--  Condition  -->
+    <string name="select_condition_label">Select Condition</string>
+
+    <!--TOOLS TEXT-->
+    <string name="tools_text_label">Label</string>
+    <string name="tools_text_title_headline">Title Headline</string>
+
+    <!--  Scanner  -->
+    <string name="scanner_title">Scan QR</string>
+    <string name="scanner_title_toolbar">Scan QR %s</string>
+    <string name="scanner_success_save_data_label">Successfully save data</string>
+
+    <!--  Dialog  -->
+    <string name="voyage_number_label">Voyage Id</string>
+    <string name="voyage_number_hint">Enter container voyage id</string>
+    <string name="seal_number_label">Seal Number</string>
+    <string name="seal_number_hint">Enter container seal number</string>
+    <string name="tarra_weight_label">Tarra Weight</string>
+    <string name="tarra_weight_hint">Enter container Tarra Weight</string>
+    <string name="container_condition_title">Container Condition</string>
+    <string name="condition_label">Condition :</string>
+    <string name="condition_image">Picture Condition :</string>
+    <string name="container_image">Container Picture :</string>
+    <string name="container_photo">Container Photo</string>
+    <string name="so_number_label">Sales Order Number</string>
+    <string name="select_so_number_label">Select Sales Order Number</string>
+    <string name="so_number_serch_hint">Search Sales Order Number</string>
+    <string name="so_number_empty_state_label">No sales order number data</string>
+    <string name="container_continue_label">Continue</string>
+    <string name="container_defect_label">Defect</string>
+    <string name="container_descsription_label">Description</string>
+    <string name="container_closing_label">Closing</string>
+
+    <!--  Container  -->
+    <string name="container_qr_title">QR Container</string>
+    <string name="container_defect_title">Container Defect</string>
+
+    <!-- Printer -->
+    <string name="printer_select">Choose Printer</string>
+    <string name="printer_connection_failed">Connection failed! Try again or restart the printer</string>
+    <string name="printer_connecting">Connecting to a printer</string>
+    <string name="printer_connected">Sending printouts</string>
+
+    <!-- Select Image -->
+    <string name="choose_media">Choose Media</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="pick_image_intent_chooser_title">Select source</string>
+
+    <!--  Navigation Drawer  -->
+    <string name="scan_marking_title">Scan Marking</string>
+    <string name="scan_seal_title">Scan Seal</string>
+    <string name="scan_isotank_title">Scan Isotank</string>
+    <string name="scan_flexi_title">Scan Flexi</string>
+    <string name="scan_stuffing_title">Scan Loading/Stuffing</string>
+    <string name="container_repair_title">Container Repair</string>
+
+    <!--  Scan Seal  -->
+
+    <!--  Seal Form  -->
+    <string name="seal_image">Seal Picture :</string>
+    <string name="seal_form_title">Seal Data</string>
+    <string name="seal_preview_dg_status_label">DG Status :</string>
+
+    <!--  Scan Survey ISO TANK  -->
+    <string name="inner_tank_title">Inner Tank</string>
+    <string name="man_hole_title">Man Hole</string>
+    <string name="manifold_title">Manifold</string>
+    <string name="remark_title">Remark</string>
+    <string name="isotank_form_title">Isotank Data</string>
+    <string name="isotank_form_isotank_cap_label">Cap</string>
+    <string name="isotank_form_isotank_cap_hint">Enter isotank cap</string>
+    <string name="isotank_form_isotank_tarra_label">Tarra</string>
+    <string name="isotank_form_isotank_tarra_hint">Enter isotank tarra</string>
+    <string name="isotank_form_isotank_remark_hint">Enter isotank description</string>
+
+    <!--  Flexi Form  -->
+    <string name="flexi_form_title">Flexi Data</string>
+    <string name="flexi_form_flexi_cap_label">Cap</string>
+    <string name="flexi_form_flexi_cap_hint">Enter flexi cap</string>
+    <string name="flexi_form_flexi_number_label">Number</string>
+    <string name="flexi_form_flexi_number_hint">Enter flexi number</string>
+
+    <!--  Flexi Preview  -->
+    <string name="flexi_preview_title">Preview Data</string>
+    <string name="flexi_preview_flexi_cap_label">Cap :</string>
+    <string name="flexi_preview_flexi_number_label">Number :</string>
+
+    <!--  Marking Form  -->
+    <string name="marking_image">Marking Picture :</string>
+    <string name="marking_form_title">Marking Data</string>
+    <string name="marking_preview_container_type_label">Container Type :</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

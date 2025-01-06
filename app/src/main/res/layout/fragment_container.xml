@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="containerViewModel"
+            type="com.example.containertracker.ui.container.ContainerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.container.ContainerFragment">
+
+        <com.example.containertracker.widget.SearchWidget
+            android:id="@+id/searchWidgetContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:searchHint="@string/history_serch_hint"
+            app:searchWidgetInputText="@={containerViewModel.keywordSearch}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_submit_container"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_container"
+            android:background="@drawable/background_button_green"
+            android:text="@string/general_action_search"
+            android:textAppearance="@style/Button"
+            android:textColor="@color/white_FFFFFF"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchWidgetContainer" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="@dimen/margin_container"
+            android:background="@color/stroke_EDEDED"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_submit_container" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_container"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:listitem="@layout/item_container" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_empty_state_data"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white_FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_empty_state_data"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/text_headline_empty_state_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:srcCompat="@drawable/empty" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_headline_empty_state_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/icon_default"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="Oops..."
+                android:textAlignment="center"
+                android:textAppearance="@style/Headline"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toTopOf="@id/text_subheadline_empty_state_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_empty_state_data" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_subheadline_empty_state_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/history_empty_state_label"
+                android:textAlignment="center"
+                android:textAppearance="@style/Large"
+                android:textColor="@color/gray_ADABAB"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_headline_empty_state_data"
+                tools:text="Segera buat data anda ...." />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
