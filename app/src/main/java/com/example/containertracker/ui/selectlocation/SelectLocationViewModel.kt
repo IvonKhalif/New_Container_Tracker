@@ -8,6 +8,7 @@ import com.example.containertracker.data.user.models.User
 import com.example.containertracker.domain.location.LocationsLocalSalesUseCase
 import com.example.containertracker.domain.location.LocationsUseCase
 import com.example.containertracker.utils.PreferenceUtils
+import com.example.containertracker.utils.UserUtil
 import com.example.containertracker.utils.enums.RoleAccessEnum
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.launch
@@ -19,7 +20,7 @@ class SelectLocationViewModel(
     val locationsLiveData = MutableLiveData<List<Location>>()
 
     fun getDataLocations(isContainerLaden: Boolean) {
-        if (userData.value?.departmentId.orEmpty() == RoleAccessEnum.LOCALSALES.value)
+        if (UserUtil.isLocalSalesUser() || UserUtil.isTallyUser())
             getLocationsLocalSales()
         else
             getLocations(isContainerLaden)

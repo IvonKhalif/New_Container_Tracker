@@ -1,6 +1,7 @@
 package com.example.containertracker.data.user.models
 
 import android.os.Parcelable
+import com.example.containertracker.utils.enums.RoleAccessEnum
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 

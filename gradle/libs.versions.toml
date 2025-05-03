@@ -10,10 +10,10 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-activityKtxVersion = "1.9.3"
-fragmentKtxVersion = "1.8.4"
+activityKtxVersion = "1.10.0"
+fragmentKtxVersion = "1.8.5"
 preferenceKtxVersion = "1.2.1"
-constraintLayoutVersion = "2.1.4"
+constraintLayoutVersion = "2.2.0"
 navigationFragmentKtxVersion = "2.8.3"
 navigationUiKtxVersion = "2.8.3"
 glideVersion = "4.16.0"
@@ -37,6 +37,7 @@ chuckerVersion = "4.0.0"
 rxbindingVersion = "4.0.0"
 kaptVersion = "2.0.21"
 zoomyVersion = "1.0.0"
+activityVersion = "1.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -90,6 +91,7 @@ chucker-release = { group = "com.github.chuckerteam.", name = "library-no-op", v
 zoomy = { group = "io.github.imablanco", name = "zoomy", version.ref = "zoomyVersion" }
 
 kotlinParcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "parcelize" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

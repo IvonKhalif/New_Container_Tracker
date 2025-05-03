@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.util.Base64
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,7 @@ import com.example.containertracker.utils.printer.DeviceConnFactoryManager
 import com.example.containertracker.utils.printer.DeviceConnFactoryManager.CONN_STATE_FAILED
 import com.example.containertracker.utils.printer.PrinterUiModel
 import com.example.containertracker.ui.container.printer_list.PrinterListBottomSheet
+import com.example.containertracker.ui.flexi.form.FlexiFormParam
 import com.example.containertracker.utils.constants.ExtrasConstant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,7 +33,11 @@ class ContainerDetailActivity : BaseActivity() {
     private val viewModel: ContainerDetailViewModel by viewModel()
 
     private val container by lazy {
-        intent.getParcelableExtra<ContainerDetail>(ExtrasConstant.EXTRA_CONTAINER_DATA)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(ExtrasConstant.EXTRA_CONTAINER_DATA, ContainerDetail::class.java)
+        } else {
+            intent.getParcelableExtra(ExtrasConstant.EXTRA_CONTAINER_DATA)
+        }
     }
 
     private var deviceFactory: DeviceConnFactoryManager? = null

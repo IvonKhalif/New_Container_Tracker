@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace = "com.example.containertracker"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.containertracker"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 241
-        versionName = "2.4.1"
+        targetSdk = 35
+        versionCode = 2418
+        versionName = "2.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,13 +32,14 @@ android {
         dataBinding = true
 //        viewBinding = true
         buildConfig = true
+        viewBinding = true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     this.buildOutputs.all {
         val variantOutputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
@@ -61,6 +62,7 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.constraintlayout)
     implementation(libs.kotlinParcelize)
+    implementation(libs.androidx.activity)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

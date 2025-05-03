@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="containerViewModel"
+            type="com.example.containertracker.ui.container.ContainerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.tally.draft.TallyContainerDraftActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:layout_marginTop="80dp"
+            android:paddingTop="@dimen/margin_container"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_container" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_empty_state_data"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white_FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_empty_state_data"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/text_headline_empty_state_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:srcCompat="@drawable/empty" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_headline_empty_state_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/icon_default"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="Oops..."
+                android:textAlignment="center"
+                android:textAppearance="@style/Headline"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toTopOf="@id/text_subheadline_empty_state_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_empty_state_data" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_subheadline_empty_state_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/history_empty_state_label"
+                android:textAlignment="center"
+                android:textAppearance="@style/Large"
+                android:textColor="@color/gray_ADABAB"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_headline_empty_state_data"
+                tools:text="Segera buat data anda ...." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

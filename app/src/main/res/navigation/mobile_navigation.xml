@@ -48,10 +48,22 @@
         tools:layout="@layout/fragment_scan_marking" />
 
     <fragment
+        android:id="@+id/nav_scan_marking_local_sales"
+        android:name="com.example.containertracker.ui.marking.ScanMarkingFragment"
+        android:label="@string/scan_marking_local_sales_title"
+        tools:layout="@layout/fragment_scan_marking_local_sales" />
+
+    <fragment
         android:id="@+id/nav_scan_seal"
         android:name="com.example.containertracker.ui.seal.ScanSealFragment"
         android:label="@string/scan_seal_title"
         tools:layout="@layout/fragment_scan_seal" />
+
+    <fragment
+        android:id="@+id/nav_scan_seal_local_sales"
+        android:name="com.example.containertracker.ui.seal.ScanSealFragment"
+        android:label="@string/scan_seal_local_sales_title"
+        tools:layout="@layout/fragment_scan_seal_local_sales" />
 
     <fragment
         android:id="@+id/nav_scan_flexi"

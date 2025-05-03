@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModelBinding"
+            type="com.example.containertracker.ui.tally.pallet.formpallet.PalletFormViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/header_basic_text_title_headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/pallet_form_title"
+                android:textAppearance="@style/Headline"
+                app:layout_constraintBottom_toTopOf="@id/divider"
+                app:layout_constraintEnd_toStartOf="@+id/btn_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@null"
+                android:src="@drawable/ic_close"
+                app:layout_constraintBottom_toTopOf="@id/divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="?actionBarSize"
+                android:background="@color/smoke_E0E0E0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_pallet_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.palletIdLiveData}"
+                app:inputTextViewHint="@string/pallet_id_hint"
+                app:inputTextViewLabel="@string/pallet_id_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_batch_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.batchNumberLiveData}"
+                app:inputTextViewHint="@string/pallet_batch_number_hint"
+                app:inputTextViewLabel="@string/pallet_batch_number_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_pallet_id" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_pallet_qty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.quantityLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/pallet_quantity_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_batch_number" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_reject"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.rejectLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/pallet_reject_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_pallet_qty" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_loaded"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.loadedLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/pallet_loaded_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_reject" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_actual_batch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.actualBatchLiveData}"
+                app:inputTextViewHint="@string/pallet_actual_batch_hint"
+                app:inputTextViewLabel="@string/pallet_actual_batch_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_loaded" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_remarks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.remarksLiveData}"
+                app:inputTextViewHint="@string/pallet_remarks_hint"
+                app:inputTextViewLabel="@string/pallet_remarks_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_actual_batch" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_submit"
+                style="@style/ButtonTheme.Vanilla.SolidPrimary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_container"
+                android:layout_marginTop="@dimen/icon_default"
+                android:layout_marginBottom="@dimen/margin_container"
+                android:text="@string/general_action_submit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_remarks" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

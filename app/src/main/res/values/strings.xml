@@ -21,16 +21,20 @@
     <string name="general_action_no">No</string>
     <string name="general_action_save">Save</string>
     <string name="general_action_cancel">Cancel</string>
+    <string name="general_action_delete">Delete</string>
     <string name="general_action_submit">Submit</string>
     <string name="general_action_continue">Continue</string>
+    <string name="general_action_back">Back</string>
     <string name="general_action_next">Next</string>
     <string name="general_action_search">Search</string>
     <string name="general_action_export">Export</string>
     <string name="general_action_select">Select</string>
     <string name="general_action_print">Print</string>
+    <string name="general_action_finish">Finish</string>
     <string name="general_mandatory_caption">*</string>
     <string name="version_format">Version %1$s</string>
     <string name="general_error_message">Something went wrong. Please try again.</string>
+    <string name="add_new_item">Add new item</string>
 
     <!--  Login  -->
     <string name="login_user_name_label">Username</string>
@@ -72,6 +76,7 @@
     <string name="back_side_label">Back :</string>
     <string name="left_side_label">Left :</string>
     <string name="right_side_label">Right :</string>
+    <string name="wall_side_label">Wall :</string>
     <string name="damaged_total">Total kerusakan %s sisi</string>
 
     <!-- History Container Detail -->
@@ -89,6 +94,8 @@
 
     <!--  Scanner  -->
     <string name="scanner_title">Scan QR</string>
+    <string name="scanner_tally_title">Scan QR Tally</string>
+    <string name="scanner_local_sales_title">Scan QR Local Sales</string>
     <string name="scanner_title_toolbar">Scan QR %s</string>
     <string name="scanner_success_save_data_label">Successfully save data</string>
 
@@ -130,8 +137,10 @@
     <string name="pick_image_intent_chooser_title">Select source</string>
 
     <!--  Navigation Drawer  -->
-    <string name="scan_marking_title">Scan Marking</string>
-    <string name="scan_seal_title">Scan Seal</string>
+    <string name="scan_marking_title">Scan Marking Export</string>
+    <string name="scan_marking_local_sales_title">Scan Marking Local Sales</string>
+    <string name="scan_seal_title">Scan Seal Export</string>
+    <string name="scan_seal_local_sales_title">Scan Seal Local Sales</string>
     <string name="scan_isotank_title">Scan Isotank</string>
     <string name="scan_flexi_title">Scan Flexi</string>
     <string name="scan_stuffing_title">Scan Loading/Stuffing</string>
@@ -172,6 +181,101 @@
     <string name="marking_image">Marking Picture :</string>
     <string name="marking_form_title">Marking Data</string>
     <string name="marking_preview_container_type_label">Container Type :</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  Tally Sheet  -->
+    <string name="tally_sheet_picture_form_title">Pictures</string>
+    <string name="tally_sheet_form_title">Tally Sheet</string>
+    <string name="tally_sheet_buyer_label">Buyer</string>
+    <string name="tally_sheet_buyer_hint">Enter Buyer Name</string>
+    <string name="tally_sheet_forklift_label">Forklift Driver</string>
+    <string name="tally_sheet_forklift_hint">Enter Forklift Driver Name</string>
+    <string name="tally_sheet_stuffer_label">Stuffer</string>
+    <string name="tally_sheet_stuffer_hint">Enter Stuffer Name</string>
+    <string name="tally_sheet_pra_stuffing_label">Pra Stuffing :</string>
+    <string name="tally_sheet_bags_quantity_label">Bags Quantity</string>
+    <string name="tally_sheet_quantity_hint">Enter Quantity</string>
+    <string name="tally_sheet_pallet_quantity_label">Pallet Quantity</string>
+    <string name="tally_sheet_pallet_id_label">Pallet ID</string>
+    <string name="tally_sheet_pallet_id_hint">Enter Pallet ID</string>
+    <string name="tally_sheet_container_condition_label">Container Condition :</string>
+    <string name="tally_sheet_after_stuffing_label">After Stuffing :</string>
+    <string name="tally_sheet_left_lock_bar_label">Left Lock Bar</string>
+    <string name="tally_sheet_right_lock_bar_label">Right Lock Bar</string>
+    <string name="tally_sheet_material_type_label">Material Type :</string>
+    <string name="tally_sheet_plastic_wrapped_label">Plastic Wrapped</string>
+    <string name="tally_sheet_tali_label">Tali</string>
+    <string name="tally_sheet_polyfoam_label">Polyfoam (pcs)</string>
+    <string name="tally_sheet_amount_hint">Enter amount</string>
+    <string name="tally_sheet_polywood_label">Polywood (pcs)</string>
+    <string name="tally_sheet_cartoon_sheet_2_37m_label">Cartoon Sheet 2,37M x 1,2M (pcs)</string>
+    <string name="tally_sheet_cartoon_sheet_1_1m_label">Cartoon Sheet 1,1M x 1,1M (pcs)</string>
+    <string name="tally_sheet_striping_belt_label">Striping Belt (pcs)</string>
+    <string name="tally_sheet_striping_bent_label">Striping Bent</string>
+    <string name="tally_sheet_pcs_label">pcs</string>
+    <string name="tally_sheet_kilograms_label">kgs</string>
+    <string name="tally_sheet_packaging_type_label">Packaging Type :</string>
+    <string name="tally_sheet_paper_bag_label">Paper Bag (kgs)</string>
+    <string name="tally_sheet_jumbo_bag_label">Jumbo Bag (kgs)</string>
+    <string name="tally_sheet_netral_paper_bag_label">Netral Paper Bag</string>
+    <string name="tally_sheet_soci_paper_bag_label">Soci Paper Bag</string>
+    <string name="tally_sheet_scpl_paper_bag_label">Scpl Paper Bag</string>
+    <string name="tally_sheet_stell_drum_label">Stell Drum (kgs)</string>
+    <string name="tally_sheet_hdpe_drum_label">Hdpe Drum (kgs)</string>
+    <string name="tally_sheet_blue_stell_drum_label">Blue Stell Drum</string>
+    <string name="tally_sheet_grey_stell_drum_label">Grey Stell Drum</string>
+    <string name="tally_sheet_green_stell_drum_label">Green Stell Drum</string>
+    <string name="tally_sheet_ibc_tank_label">IBC Tank (kgs)</string>
+    <string name="tally_sheet_palletized_label">Palletized</string>
+    <string name="tally_sheet_unpalletized_label">UnPalletized</string>
+    <string name="tally_sheet_packaging_label_label">Packaging Label :</string>
+    <string name="tally_sheet_ship_mark_label">Ship. Mark</string>
+    <string name="tally_sheet_ghs_label">GHS</string>
+    <string name="tally_sheet_dg_label">DG</string>
+    <string name="tally_sheet_psn_label">PSN</string>
+    <string name="tally_sheet_total_label_label">Total Label</string>
+    <string name="tally_sheet_scan_spm_title">Scan SPM</string>
+    <string name="tally_sheet_scan_pallet_id_title">Scan Pallet ID</string>
+    <string name="tally_sheet_success_scan_spm_message">SPM has been scanned</string>
+    <string name="tally_sheet_success_scan_pallet_message">Pallet has been scanned</string>
+    <string name="tally_sheet_draft_list_title">Tally Drafts</string>
+    <string name="tally_sheet_success_scan_container_tally_message">Container has been added to Drafts</string>
+    <string name="tally_sheet_finish_button">Finish process</string>
+    <string name="tally_sheet_finish_title">Are you sure to Finish the process?</string>
+    <string name="tally_sheet_finish_subtitle">The completed data will be saved and the status will change, and the container data will disappear in the draft list.</string>
+    <string name="tally_sheet_container_condition_good">Good/Clean</string>
+    <string name="tally_drafts_delete_title">Delete this container?</string>
+    <string name="tally_drafts_delete_subtitle">This container will be removed from the draft containers list.</string>
+    <string name="tally_drafts_success_deleted_message">Container has been deleted</string>
+
+    <!--  Scan SPM  -->
+    <string name="scan_spm_spm_number_hint">Enter SPM Number</string>
+
+    <!--  Input Pallet  -->
+    <string name="pallet_form_title">Data Pallet</string>
+    <string name="pallet_id_label">Pallet ID</string>
+    <string name="pallet_id_hint">Enter Pallet ID</string>
+    <string name="pallet_batch_number_label">Batch Number</string>
+    <string name="pallet_batch_number_hint">Enter Batch Number</string>
+    <string name="pallet_quantity_label">Quantity</string>
+    <string name="pallet_reject_label">Reject</string>
+    <string name="pallet_reject_hint">Enter Reason of Reject</string>
+    <string name="pallet_loaded_label">Loaded</string>
+    <string name="pallet_actual_batch_label">Actual Batch</string>
+    <string name="pallet_actual_batch_hint">Enter Actual Batch</string>
+    <string name="pallet_remarks_label">Remarks</string>
+    <string name="pallet_remarks_hint">Enter Remark</string>
+
+    <!--  Pallet List  -->
+    <string name="pallet_list_title">Pallet List</string>
+    <string name="pallet_list_batch_label">Batch : %s</string>
+    <string name="pallet_list_empty_state_label">No pallet data has been added yet</string>
+    <string name="pallet_list_delete_title">Delete this Pallet?</string>
+    <string name="pallet_list_delete_subtitle">This pallet data will be removed from the pallet list.</string>
+    <string name="pallet_list_success_deleted_message">Pallet has been Deleted</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 </resources>

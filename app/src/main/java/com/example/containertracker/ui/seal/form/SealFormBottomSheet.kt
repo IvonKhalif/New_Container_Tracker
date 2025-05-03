@@ -62,6 +62,10 @@ class SealFormBottomSheet : BaseBottomSheet() {
         }
     }
 
+    private val isLocalSales by lazy {
+        arguments?.getBoolean(ExtrasConstant.EXTRA_IS_LOCAL_SALES, false)
+    }
+
     private val imagePreviewLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { viewModel.onImagePreviewResult(resultCode = it.resultCode, intent = it.data) }
@@ -163,6 +167,7 @@ class SealFormBottomSheet : BaseBottomSheet() {
         val intent = Intent(activity, SealPreviewActivity::class.java)
         intent.putExtra(ExtrasConstant.EXTRA_IMAGE_LIST_DATA, imageList)
         intent.putExtra(ExtrasConstant.EXTRA_CONTAINER_DATA, container)
+        intent.putExtra(ExtrasConstant.EXTRA_IS_LOCAL_SALES, isLocalSales)
         resultLauncher.launch(intent)
     }
 
@@ -223,12 +228,14 @@ class SealFormBottomSheet : BaseBottomSheet() {
         private const val ARG_CONTAINER_DATA = "container_data"
 
         fun newInstance(
-            container: Container
+            container: Container,
+            isLocalSales: Boolean
         ): SealFormBottomSheet {
             val sheet = SealFormBottomSheet()
 
             sheet.arguments = Bundle().apply {
                 putParcelable(ARG_CONTAINER_DATA, container)
+                putBoolean(ExtrasConstant.EXTRA_IS_LOCAL_SALES, isLocalSales)
             }
 
             return sheet

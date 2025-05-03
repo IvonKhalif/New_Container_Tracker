@@ -32,7 +32,7 @@ data class HistoryModel(
     @SerializedName("id_location") var idLocation: Int?,
     @SerializedName("status_reverse") var statusReverse: String?,
     @SerializedName("created_date") var createdDate: String?,
-    @SerializedName("created_by") var createdBy: Int?,
+    @SerializedName("created_by") var createdBy: String?,
     @SerializedName("updated_date") var updatedDate: String?,
     @SerializedName("updated_by") var updatedBy: Int?,
     @SerializedName("deleted_date") var deletedDate: String?,

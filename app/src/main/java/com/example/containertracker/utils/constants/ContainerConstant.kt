@@ -7,4 +7,5 @@ object ContainerConstant {
     const val ROOF="Roof"
     const val DOOR="Door"
     const val BACK="Back"
+    const val WALL="Wall"
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_container"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/margin_container"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pallet"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/pallet_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pallet_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_component"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginBottom="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:textAppearance="@style/Large"
+                app:layout_constraintEnd_toStartOf="@id/button_edit"
+                app:layout_constraintStart_toEndOf="@id/image_container"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Nama / Code Container"
+                tools:textColor="@color/black_484848" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/batch_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_component"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginBottom="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:textAppearance="@style/Medium"
+                app:layout_constraintEnd_toEndOf="@id/pallet_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_container"
+                app:layout_constraintTop_toBottomOf="@id/pallet_name"
+                tools:text="Nama / Code Container"
+                tools:textColor="@color/black_484848" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/button_edit"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/margin_component"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/button_delete"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/button_delete"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

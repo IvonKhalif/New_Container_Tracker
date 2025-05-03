@@ -10,5 +10,6 @@ enum class ContainerSidesEnum(val type: String) : Parcelable {
     BACK("Back Condition"),
     DOOR("Door Condition"),
     LEFT("Left Condition"),
-    RIGHT("Right Condition")
+    RIGHT("Right Condition"),
+    WALL("Wall Condition")
 }

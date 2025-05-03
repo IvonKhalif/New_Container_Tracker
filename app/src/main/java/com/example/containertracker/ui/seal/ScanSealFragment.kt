@@ -10,6 +10,7 @@ import com.example.containertracker.data.container.models.Container
 import com.example.containertracker.databinding.FragmentScanSealBinding
 import com.example.containertracker.ui.marking.ScanMarkingFragment
 import com.example.containertracker.ui.seal.form.SealFormBottomSheet
+import com.example.containertracker.utils.UserUtil
 import com.example.containertracker.utils.enums.FlagScanEnum
 import com.google.zxing.Result
 import kotlinx.coroutines.Dispatchers
@@ -85,7 +86,8 @@ class ScanSealFragment : BaseFragment(), ZXingScannerView.ResultHandler {
 
     private fun showSealForm(container: Container) {
         SealFormBottomSheet.newInstance(
-            container = container
+            container = container,
+            isLocalSales = UserUtil.isLocalSalesUser()
         ).apply {
             isCancelable = false
 

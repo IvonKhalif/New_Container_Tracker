@@ -1,38 +1,39 @@
 package com.example.containertracker.ui.media.select_image
 
+import android.R.attr.bitmap
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.media.MediaScannerConnection
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.os.FileUtils
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.lifecycle.lifecycleScope
+import com.example.containertracker.BuildConfig
 import com.example.containertracker.R
 import com.example.containertracker.base.BaseActivity
-import com.example.containertracker.base.dismissBottomSheetWidget
 import com.example.containertracker.base.runPermissionRequest
 import com.example.containertracker.base.showPermissionRationaleModal
 import com.example.containertracker.base.useContext
-import com.example.containertracker.ui.main.MainActivity
-import com.example.containertracker.utils.pickimage.PickImageUtils
 import com.example.containertracker.utils.enums.PermissionEnum
+import com.example.containertracker.utils.extension.orFalse
 import com.example.containertracker.utils.media.CameraHelper
 import com.example.containertracker.utils.media.FileUtil
 import com.example.containertracker.utils.media.GalleryHelper
 import com.example.containertracker.utils.pickimage.CommonValues
+import com.example.containertracker.utils.pickimage.PickImageUtils
 import com.example.containertracker.utils.pickimage.PickImageUtils.uri
 import com.example.containertracker.widget.menu_bottom_sheet.MenuIconWithHeadlineAdapter
 import com.example.containertracker.widget.menu_bottom_sheet.MenuIconWithHeadlineBottomSheet
 import com.example.containertracker.widget.select_image.SelectImageMenuType
 import id.zelory.compressor.Compressor
-import id.zelory.compressor.constraint.format
 import id.zelory.compressor.constraint.quality
 import id.zelory.compressor.constraint.resolution
 import id.zelory.compressor.constraint.size
@@ -41,6 +42,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
+
 
 /**
  * Created by yovi.putra on 20/07/22"
@@ -52,6 +54,10 @@ class SelectImageBottomSheet(
     private val fileImageOnSelected: ((File) -> Unit)? = null
 ) : MenuIconWithHeadlineBottomSheet<SelectImageMenuType>() {
 
+    private val saveImageToDirectory by lazy {
+        arguments?.getBoolean(SAVE_IMAGE_TO_DIRECTORY).orFalse()
+    }
+
     private var permissions = mutableListOf<PermissionEnum>()
 
     // Camera helper
@@ -60,7 +66,7 @@ class SelectImageBottomSheet(
     // Camera Launcher
     private val cameraLauncher =
         registerForActivityResult(ActivityResultContracts.TakePicture()) {
-            Log.e("TAG", "cameraLauncher: $it", )
+            Log.e("TAG", "cameraLauncher: $it")
 //            Log.e("TAG", "cameraLauncher: ${it.resultCode} ${it.data?.data}", )
 //            if (it.resultCode == AppCompatActivity.RESULT_OK) {
 //                onImageSelected(it.data?.data)
@@ -157,7 +163,10 @@ class SelectImageBottomSheet(
     }
 
     private fun chooseImage() = useContext { context ->
-        val file = PickImageUtils.createImageFile(context)
+        val file = if (saveImageToDirectory)
+            File(createImageUri()?.path ?: "")
+        else
+            PickImageUtils.createImageFileTemp(context)
         if (!file.exists()) {
             try {
                 file.createNewFile()
@@ -171,13 +180,13 @@ class SelectImageBottomSheet(
             // Ensure that there's a camera activity to handle the intent
             takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
                 // Continue only if the File was successfully created
-                file.also {f ->
+                file.also { f ->
                     uri = FileProvider.getUriForFile(
                         context,
-                        context.packageName + CommonValues.authority,
+                        BuildConfig.APPLICATION_ID + CommonValues.authority,
                         f
                     )
-                    Log.e("TAG", "chooseImage: $uri", )
+                    Log.e("TAG", "chooseImage: $uri")
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
                     cameraLauncher.launch(uri)
                 }
@@ -199,10 +208,25 @@ class SelectImageBottomSheet(
         }
     }
 
-    private fun onImageSelected(uri: Uri?) = useContext {usableContext ->
+    private fun onImageSelected(uri: Uri?) = useContext { usableContext ->
         if (uri == null) return@useContext
 //        startActivity(Intent(usableContext, MainActivity::class.java))
         PickImageUtils.uri = uri
+        val file = File(uri.path ?: "")
+        if (!file.exists()) {
+            try {
+                Log.e("Camera Result", "onActivityResult: ${PickImageUtils.uri?.path}")
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+        }
+        MediaScannerConnection.scanFile(
+            context,
+            arrayOf(uri.path),
+            arrayOf("image/png"),
+            null
+        )
         onImageSelected.invoke(null)
         dismiss()
         /*showLoading(true)
@@ -250,6 +274,7 @@ class SelectImageBottomSheet(
                 resultCode == Activity.RESULT_OK
             ) {
                 uri = PickImageUtils.getPickImageResultUriContent(usableContext, data)
+                Log.e("Camera Result", "onActivityResult: ${uri?.path}")
                 if (FileUtil.isImageFileType(uri, usableContext)) {
                     compressImage(uri)
                 } else {
@@ -272,7 +297,30 @@ class SelectImageBottomSheet(
         showPermissionRationaleModal(permissions)
     }
 
+    private fun createImageUri(): Uri? {
+        return context?.let { ctx ->
+            val resolver = ctx.contentResolver
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, "IMG_${System.currentTimeMillis()}.png")
+                put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+                put(
+                    MediaStore.MediaColumns.RELATIVE_PATH,
+                    Environment.DIRECTORY_DCIM + "/Container Tracker/"
+                ) // Create a subfolder within DCIM    }
+            }
+            resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+        }
+    }
+
     companion object {
-        fun newInstance() = SelectImageBottomSheet()
+        private const val SAVE_IMAGE_TO_DIRECTORY = "SAVE_IMAGE_TO_DIRECTORY"
+
+        fun newInstance(
+            saveImageToDirectory: Boolean = false
+        ) = SelectImageBottomSheet().apply {
+            arguments = Bundle().apply {
+                putBoolean(SAVE_IMAGE_TO_DIRECTORY, saveImageToDirectory)
+            }
+        }
     }
 }

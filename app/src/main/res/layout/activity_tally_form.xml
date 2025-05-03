@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModelBinding"
+            type="com.example.containertracker.ui.tally.form.TallyFormViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/container_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="8dp"
+                android:text="@string/menu_container"
+                android:textAppearance="@style/Title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/container_code_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/icon_default"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="8dp"
+                android:textAppearance="@style/BoldSubHeadline"
+                app:layout_constraintBottom_toBottomOf="@id/container_label"
+                app:layout_constraintStart_toEndOf="@id/container_label"
+                app:layout_constraintTop_toTopOf="@id/container_label"
+                app:layout_constraintVertical_bias="1"
+                tools:text="@string/menu_container" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/seal_number_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="8dp"
+                android:text="@string/seal_number_label"
+                android:textAppearance="@style/Title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/container_label"
+                app:layout_constraintVertical_bias="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/seal_number_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/icon_default"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="8dp"
+                android:textAppearance="@style/BoldSubHeadline"
+                app:layout_constraintBottom_toBottomOf="@id/seal_number_label"
+                app:layout_constraintStart_toEndOf="@id/seal_number_label"
+                app:layout_constraintTop_toTopOf="@id/seal_number_label"
+                app:layout_constraintVertical_bias="1"
+                tools:text="@string/menu_container" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_forklift_driver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.forkliftDriverLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_forklift_hint"
+                app:inputTextViewLabel="@string/tally_sheet_forklift_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/seal_number_label" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_stuffer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.stufferLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_stuffer_hint"
+                app:inputTextViewLabel="@string/tally_sheet_stuffer_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_forklift_driver" />
+
+            <com.example.containertracker.widget.DropDownWidget
+                android:id="@+id/startTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_stuffer" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_quantity_pallet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.qtyPalletLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_quantity_hint"
+                app:inputTextViewInputType="numberDecimal"
+                app:inputTextViewLabel="@string/tally_sheet_pallet_quantity_label"
+                app:layout_constraintEnd_toStartOf="@id/input_quantity_bags"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pra_stuffing_label" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_quantity_bags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.qtyBagsLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_quantity_hint"
+                app:inputTextViewInputType="numberDecimal"
+                app:inputTextViewLabel="@string/tally_sheet_bags_quantity_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/input_quantity_pallet"
+                app:layout_constraintTop_toTopOf="@id/input_quantity_pallet" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pra_stuffing_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_pra_stuffing_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/startTime" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_pallet_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.palletIdLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_pallet_id_hint"
+                app:inputTextViewInputType="numberDecimal"
+                app:inputTextViewLabel="@string/tally_sheet_pallet_id_label"
+                app:layout_constraintEnd_toStartOf="@id/input_quantity_bags"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_quantity_pallet" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/container_condition_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_container_condition_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_pallet_id" />
+
+            <com.example.containertracker.widget.DropDownWidget
+                android:id="@+id/roof_condition_tally"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_component"
+                app:layout_constraintEnd_toStartOf="@id/floor_condition_tally"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/container_condition_label" />
+
+            <com.example.containertracker.widget.DropDownWidget
+                android:id="@+id/floor_condition_tally"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/roof_condition_tally"
+                app:layout_constraintTop_toTopOf="@id/roof_condition_tally" />
+
+            <com.example.containertracker.widget.DropDownWidget
+                android:id="@+id/wall_condition_tally"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_component"
+                app:layout_constraintEnd_toStartOf="@id/door_condition_tally"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/roof_condition_tally" />
+
+            <com.example.containertracker.widget.DropDownWidget
+                android:id="@+id/door_condition_tally"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/wall_condition_tally"
+                app:layout_constraintTop_toTopOf="@id/wall_condition_tally" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/after_stuffing_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_after_stuffing_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wall_condition_tally" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/left_lock_bar_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_left_lock_bar_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/after_stuffing_label" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkbox_left_lock_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/left_lock_bar_label"
+                app:layout_constraintStart_toEndOf="@id/left_lock_bar_label"
+                app:layout_constraintTop_toTopOf="@id/left_lock_bar_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/right_lock_bar_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_right_lock_bar_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintBottom_toBottomOf="@id/left_lock_bar_label"
+                app:layout_constraintStart_toEndOf="@id/checkbox_left_lock_bar"
+                app:layout_constraintTop_toTopOf="@id/left_lock_bar_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_right_lock_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/right_lock_bar_label"
+                app:layout_constraintStart_toEndOf="@id/right_lock_bar_label"
+                app:layout_constraintTop_toTopOf="@id/right_lock_bar_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/material_type_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_material_type_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/left_lock_bar_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/plastic_wrapped_Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_plastic_wrapped_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/material_type_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_plastic_wrapped_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/general_action_yes"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/plastic_wrapped_Label"
+                app:layout_constraintStart_toEndOf="@id/plastic_wrapped_Label"
+                app:layout_constraintTop_toTopOf="@id/plastic_wrapped_Label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_plastic_wrapped_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_component"
+                android:text="@string/general_action_no"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/checkbox_plastic_wrapped_yes"
+                app:layout_constraintStart_toEndOf="@id/checkbox_plastic_wrapped_yes"
+                app:layout_constraintTop_toTopOf="@id/checkbox_plastic_wrapped_yes" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tali_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_tali_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_plastic_wrapped_yes" />
+
+            <CheckBox
+                android:id="@+id/checkbox_tali"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/tali_label"
+                app:layout_constraintStart_toEndOf="@id/tali_label"
+                app:layout_constraintTop_toTopOf="@id/tali_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/striping_bent_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_striping_bent_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tali_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_striping_bent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/striping_bent_label"
+                app:layout_constraintStart_toEndOf="@id/striping_bent_label"
+                app:layout_constraintTop_toTopOf="@id/striping_bent_label" />
+
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_striping_belt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tally_sheet_striping_belt_label"
+                android:textAppearance="@style/Label"
+                app:inputTextValue="@={viewModelBinding.stripingBeltLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewInputType="number"
+                app:inputTextViewLabel="@string/tally_sheet_striping_belt_label"
+                app:layout_constraintEnd_toStartOf="@id/input_jumbo_bag"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/striping_bent_label" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_polyfoam"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.polyfoamLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/tally_sheet_polyfoam_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toStartOf="@id/input_polywood"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_striping_belt" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_polywood"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.polywoodLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/tally_sheet_polywood_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/input_polyfoam"
+                app:layout_constraintTop_toTopOf="@id/input_polyfoam" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_cartoon_sheet_2_37m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.cartoonSheet2LiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewInputType="number"
+                app:inputTextViewLabel="@string/tally_sheet_cartoon_sheet_2_37m_label"
+                app:layout_constraintEnd_toStartOf="@id/input_cartoon_sheet_1_1m"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_polyfoam" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_cartoon_sheet_1_1m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.cartoonSheet1LiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewInputType="number"
+                app:inputTextViewLabel="@string/tally_sheet_cartoon_sheet_1_1m_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/input_cartoon_sheet_2_37m"
+                app:layout_constraintTop_toTopOf="@id/input_cartoon_sheet_2_37m" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_paper_bag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextValue="@={viewModelBinding.paperBagLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewInputType="number"
+                app:inputTextViewLabel="@string/tally_sheet_paper_bag_label"
+                app:layout_constraintEnd_toStartOf="@id/input_jumbo_bag"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packaging_type_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/packaging_type_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_packaging_type_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_cartoon_sheet_2_37m" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_jumbo_bag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.jumboBagLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewInputType="number"
+                app:inputTextViewLabel="@string/tally_sheet_jumbo_bag_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/input_paper_bag"
+                app:layout_constraintTop_toTopOf="@id/input_paper_bag" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/netral_paper_bag_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_netral_paper_bag_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_paper_bag" />
+
+            <CheckBox
+                android:id="@+id/checkbox_netral_paper_bag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/netral_paper_bag_label"
+                app:layout_constraintStart_toEndOf="@id/netral_paper_bag_label"
+                app:layout_constraintTop_toTopOf="@id/netral_paper_bag_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/soci_paper_bag_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_soci_paper_bag_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintBottom_toBottomOf="@id/checkbox_netral_paper_bag"
+                app:layout_constraintStart_toEndOf="@id/checkbox_netral_paper_bag"
+                app:layout_constraintTop_toTopOf="@id/checkbox_netral_paper_bag" />
+
+            <CheckBox
+                android:id="@+id/checkbox_soci_paper_bag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/soci_paper_bag_label"
+                app:layout_constraintStart_toEndOf="@id/soci_paper_bag_label"
+                app:layout_constraintTop_toTopOf="@id/soci_paper_bag_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/scpl_paper_bag_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:text="@string/tally_sheet_scpl_paper_bag_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/netral_paper_bag_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_scpl_paper_bag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/scpl_paper_bag_label"
+                app:layout_constraintStart_toEndOf="@id/scpl_paper_bag_label"
+                app:layout_constraintTop_toTopOf="@id/scpl_paper_bag_label" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_stell_drum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_component"
+                app:inputTextValue="@={viewModelBinding.stellDrumLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/tally_sheet_stell_drum_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toStartOf="@id/input_hdpe_drum"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scpl_paper_bag_label" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_hdpe_drum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.hdpeDrumLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/tally_sheet_hdpe_drum_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toStartOf="@id/input_ibc_tank"
+                app:layout_constraintStart_toEndOf="@id/input_stell_drum"
+                app:layout_constraintTop_toTopOf="@id/input_stell_drum" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_ibc_tank"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:inputTextValue="@={viewModelBinding.ibcTankLiveData}"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewLabel="@string/tally_sheet_ibc_tank_label"
+                app:inputTextViewInputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/input_hdpe_drum"
+                app:layout_constraintTop_toTopOf="@id/input_stell_drum" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/blue_stell_drum_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_blue_stell_drum_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_stell_drum" />
+
+            <CheckBox
+                android:id="@+id/checkbox_blue_stell_drum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/blue_stell_drum_label"
+                app:layout_constraintStart_toEndOf="@id/blue_stell_drum_label"
+                app:layout_constraintTop_toTopOf="@id/blue_stell_drum_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/grey_stell_drum_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_grey_stell_drum_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintBottom_toBottomOf="@id/blue_stell_drum_label"
+                app:layout_constraintStart_toEndOf="@id/checkbox_blue_stell_drum"
+                app:layout_constraintTop_toTopOf="@id/blue_stell_drum_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_grey_stell_drum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/grey_stell_drum_label"
+                app:layout_constraintStart_toEndOf="@id/grey_stell_drum_label"
+                app:layout_constraintTop_toTopOf="@id/grey_stell_drum_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/green_stell_drum_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_green_stell_drum_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/blue_stell_drum_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_green_stell_drum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/green_stell_drum_label"
+                app:layout_constraintStart_toEndOf="@id/green_stell_drum_label"
+                app:layout_constraintTop_toTopOf="@id/green_stell_drum_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/palletized_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_palletized_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/green_stell_drum_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_palletized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/palletized_label"
+                app:layout_constraintStart_toEndOf="@id/palletized_label"
+                app:layout_constraintTop_toTopOf="@id/palletized_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/unpalletized_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_unpalletized_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintBottom_toBottomOf="@id/palletized_label"
+                app:layout_constraintStart_toEndOf="@id/checkbox_palletized"
+                app:layout_constraintTop_toTopOf="@id/palletized_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_unpalletized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/unpalletized_label"
+                app:layout_constraintStart_toEndOf="@id/unpalletized_label"
+                app:layout_constraintTop_toTopOf="@id/unpalletized_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/packaging_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_container"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_packaging_label_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_palletized" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ship_mark_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_container"
+                android:layout_marginTop="@dimen/margin_component"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_ship_mark_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packaging_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_ship_mark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/ship_mark_label"
+                app:layout_constraintStart_toEndOf="@id/ship_mark_label"
+                app:layout_constraintTop_toTopOf="@id/ship_mark_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ghs_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_ghs_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintBottom_toBottomOf="@id/checkbox_ship_mark"
+                app:layout_constraintStart_toEndOf="@id/checkbox_ship_mark"
+                app:layout_constraintTop_toTopOf="@id/checkbox_ship_mark" />
+
+            <CheckBox
+                android:id="@+id/checkbox_ghs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/ghs_label"
+                app:layout_constraintStart_toEndOf="@id/ghs_label"
+                app:layout_constraintTop_toTopOf="@id/ghs_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dg_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_dg_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintBottom_toBottomOf="@id/ghs_label"
+                app:layout_constraintStart_toEndOf="@id/checkbox_ghs"
+                app:layout_constraintTop_toTopOf="@id/ghs_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_dg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/dg_label"
+                app:layout_constraintStart_toEndOf="@id/dg_label"
+                app:layout_constraintTop_toTopOf="@id/dg_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/psn_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_container"
+                android:text="@string/tally_sheet_psn_label"
+                android:textAppearance="@style/Label"
+                app:layout_constraintBottom_toBottomOf="@id/dg_label"
+                app:layout_constraintStart_toEndOf="@id/checkbox_dg"
+                app:layout_constraintTop_toTopOf="@id/dg_label" />
+
+            <CheckBox
+                android:id="@+id/checkbox_psn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/black_484848"
+                app:layout_constraintBottom_toBottomOf="@id/psn_label"
+                app:layout_constraintStart_toEndOf="@id/psn_label"
+                app:layout_constraintTop_toTopOf="@id/psn_label" />
+
+            <com.example.containertracker.widget.InputTextViewWidget
+                android:id="@+id/input_total_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                app:inputTextViewHint="@string/tally_sheet_amount_hint"
+                app:inputTextViewInputType="numberDecimal"
+                app:inputTextViewLabel="@string/tally_sheet_total_label_label"
+                app:isEditable="false"
+                app:layout_constraintEnd_toEndOf="@id/input_pallet_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_ship_mark" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_submit"
+                style="@style/ButtonTheme.Vanilla.SolidPrimary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_component"
+                android:layout_marginTop="@dimen/icon_default"
+                android:layout_marginBottom="@dimen/margin_container"
+                android:text="@string/general_action_next"
+                android:textAppearance="@style/Button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_total_label" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

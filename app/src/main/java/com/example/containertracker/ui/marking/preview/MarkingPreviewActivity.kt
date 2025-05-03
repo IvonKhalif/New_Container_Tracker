@@ -37,6 +37,10 @@ class MarkingPreviewActivity : BaseActivity() {
         }
     }
 
+    private val isLocalSales by lazy {
+        intent.getBooleanExtra(ExtrasConstant.EXTRA_IS_LOCAL_SALES, false)
+    }
+
     private val genericImageAdapter by lazy {
         GenericSelectImageAdapter {
 //            viewModel.onItemImageListClick(item = it)
@@ -76,7 +80,7 @@ class MarkingPreviewActivity : BaseActivity() {
             }
 
             buttonSubmit.setOnClickListener {
-                viewModel.onSubmit(containerData, imageListData)
+                viewModel.onSubmit(containerData, imageListData, isLocalSales)
             }
         }
     }

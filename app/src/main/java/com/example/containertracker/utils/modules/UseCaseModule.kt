@@ -30,6 +30,20 @@ import com.example.containertracker.domain.report.GetReportDataUseCase
 import com.example.containertracker.domain.salesorder.GetSalesOrderNumberUseCase
 import com.example.containertracker.domain.seal.usecase.GetContainerSealUseCase
 import com.example.containertracker.domain.seal.usecase.SaveSealUseCase
+import com.example.containertracker.domain.tally.usecase.DeletePalletUseCase
+import com.example.containertracker.domain.tally.usecase.DeleteTallySheetUseCase
+import com.example.containertracker.domain.tally.usecase.GetContainerTallyUseCase
+import com.example.containertracker.domain.tally.usecase.GetPalletDetailUseCase
+import com.example.containertracker.domain.tally.usecase.GetPalletsUseCase
+import com.example.containertracker.domain.tally.usecase.GetTallyDetailUseCase
+import com.example.containertracker.domain.tally.usecase.GetTallyDraftListUseCase
+import com.example.containertracker.domain.tally.usecase.SavePalletUseCase
+import com.example.containertracker.domain.tally.usecase.SavePhotoUseCase
+import com.example.containertracker.domain.tally.usecase.SaveTallySheetUseCase
+import com.example.containertracker.domain.tally.usecase.ScanPalletUseCase
+import com.example.containertracker.domain.tally.usecase.ScanSPMUseCase
+import com.example.containertracker.domain.tally.usecase.SubmitStatusTallyUseCase
+import com.example.containertracker.domain.tally.usecase.UpdatePalletUseCase
 import com.example.containertracker.domain.user.SignInUseCase
 import org.koin.dsl.module
 
@@ -65,4 +79,18 @@ val UseCaseModule = module {
     single { GetContainerLadenHistoryUseCase(get()) }
     single { ScanContainerRepairUseCase(get()) }
     single { SaveContainerRepairUseCase(get()) }
+    single { GetContainerTallyUseCase(get()) }
+    single { SaveTallySheetUseCase(get()) }
+    single { SavePhotoUseCase(get()) }
+    single { ScanSPMUseCase(get()) }
+    single { ScanPalletUseCase(get()) }
+    single { GetPalletsUseCase(get()) }
+    single { GetPalletDetailUseCase(get()) }
+    single { UpdatePalletUseCase(get()) }
+    single { SavePalletUseCase(get()) }
+    single { DeletePalletUseCase(get()) }
+    single { GetTallyDetailUseCase(get()) }
+    single { GetTallyDraftListUseCase(get()) }
+    single { DeleteTallySheetUseCase(get()) }
+    single { SubmitStatusTallyUseCase(get()) }
 }

@@ -28,8 +28,11 @@ class MarkingPreviewViewModel(
     // result when on-submit
     val onSuccessSubmit = ActionLiveData()
 
-    fun onSubmit(containerData: Container?, imageListData: ArrayList<GenericSelectImageUiModel>?) = viewModelScope.launch {
-        val isLocalSales = UserUtil.getDepartmentId() == RoleAccessEnum.LOCALSALES.value
+    fun onSubmit(
+        containerData: Container?,
+        imageListData: ArrayList<GenericSelectImageUiModel>?,
+        isLocalSales: Boolean
+    ) = viewModelScope.launch {
         val requestParam = withContext(Dispatchers.IO) {
             createSaveModel(containerData, imageListData)
         }

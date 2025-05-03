@@ -36,19 +36,18 @@ import com.example.containertracker.utils.extension.showImmediately
 import com.example.containertracker.utils.media.FileUtil
 import com.example.containertracker.utils.pickimage.PickImageUtils
 import com.example.containertracker.widget.DatePickerWidget
+import com.google.android.material.R.id.design_bottom_sheet
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import id.zelory.compressor.Compressor
 import id.zelory.compressor.constraint.format
 import id.zelory.compressor.constraint.quality
 import id.zelory.compressor.constraint.resolution
-import id.zelory.compressor.constraint.size
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.threeten.bp.LocalDate
-import com.google.android.material.R.id.design_bottom_sheet
 
 class ContainerConditionBottomSheet : BaseBottomSheet() {
 
@@ -205,6 +204,7 @@ class ContainerConditionBottomSheet : BaseBottomSheet() {
         conditionEnum: ConditionEnum?,
         containerSide: ContainerSidesEnum
     ) {
+        if (conditionEnum == null) binding.rightCondition.setText(getString(R.string.general_action_select))
         when (containerSide) {
             ContainerSidesEnum.RIGHT -> conditionEnum?.let {
                 binding.rightCondition.setDrawableEnd(it.getIcon())
@@ -235,6 +235,7 @@ class ContainerConditionBottomSheet : BaseBottomSheet() {
                 binding.floorCondition.setDrawableEnd(it.getIcon())
                 binding.floorCondition.setText(it.type)
             }
+            else -> {}
         }
     }
 
@@ -361,39 +362,45 @@ class ContainerConditionBottomSheet : BaseBottomSheet() {
      * show media bottom sheet
      */
     private fun showMediaDialog(data: ContainerImageUiModel) {
+        val saveImageToDirectory =
+            param?.location?.id == PosEnum.POS1.posId.toString() || param?.location?.id == PosEnum.POS7.posId.toString()
         showImmediately(childFragmentManager, "show_media") {
-            SelectImageBottomSheet.newInstance().apply {
+            SelectImageBottomSheet.newInstance(saveImageToDirectory).apply {
                 onImageSelected = {
-                    this@ContainerConditionBottomSheet.compressImage(data, PickImageUtils.uri)
+                    this@ContainerConditionBottomSheet.compressImage(
+                        data,
+                        PickImageUtils.uri
+                    )
                 }
             }
         }
     }
 
-    private fun compressImage(data: ContainerImageUiModel, uri: Uri?) = useContext { usableContext ->
-        val file = uri?.let { FileUtil.from(requireContext(), it) }
-        viewModel.showLoadingWidget()
-        CoroutineScope(Dispatchers.Main).launch {
-            val compressedImageFile = file?.let {
-                Compressor.compress(usableContext, it) {
-                    resolution(1280, 720)
-                    quality(75)
-                    format(Bitmap.CompressFormat.PNG)
+    private fun compressImage(data: ContainerImageUiModel, uri: Uri?) =
+        useContext { usableContext ->
+            val file = uri?.let { FileUtil.from(requireContext(), it) }
+            viewModel.showLoadingWidget()
+            CoroutineScope(Dispatchers.Main).launch {
+                val compressedImageFile = file?.let {
+                    Compressor.compress(usableContext, it) {
+                        resolution(1280, 720)
+                        quality(75)
+                        format(Bitmap.CompressFormat.PNG)
 //                    quality(80)
 //                    size(1_048_576) // 1 MB
+                    }
+                }
+                viewModel.hideLoadingWidget()
+                compressedImageFile?.let {
+                    // result can bigger from original
+
+                    viewModel.onImageSelected(
+                        position = data.position,
+                        file = if (file.length() < compressedImageFile.length()) file else it
+                    )
                 }
             }
-            viewModel.hideLoadingWidget()
-            compressedImageFile?.let {
-                // result can bigger from original
-
-                viewModel.onImageSelected(
-                    position = data.position,
-                    file = if (file.length() < compressedImageFile.length()) file else it
-                )
-            }
         }
-    }
 
     /**
      * show image preview

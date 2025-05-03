@@ -49,6 +49,7 @@ class InputTextViewWidget(context: Context, attrs: AttributeSet) : ConstraintLay
         val isShowHidePassword = typeArray.getBoolean(R.styleable.InputTextViewWidget_inputTextViewIsShowHidePassword, true)
         val textAllCaps = typeArray.getBoolean(R.styleable.InputTextViewWidget_inputTextViewInfoAllCaps, false)
         val maxLength = typeArray.getInt(R.styleable.InputTextViewWidget_maxLength, -1)
+        val isEditable = typeArray.getBoolean(R.styleable.InputTextViewWidget_isEditable, true)
 
         if (hint.isNullOrEmpty()) {
             hint = "Fill your hint here"
@@ -65,7 +66,8 @@ class InputTextViewWidget(context: Context, attrs: AttributeSet) : ConstraintLay
             inputTypeFlag,
             isShowHidePassword,
             textAllCaps,
-            maxLength
+            maxLength,
+            isEditable
         )
 
     }
@@ -77,7 +79,8 @@ class InputTextViewWidget(context: Context, attrs: AttributeSet) : ConstraintLay
         inputTypeFlag: Int?,
         isShowHidePassword: Boolean,
         textAllCaps: Boolean,
-        maxLength: Int
+        maxLength: Int,
+        isEditable: Boolean
     ) {
         val inputFilter = mutableListOf<InputFilter>()
         if (maxLength > -1) {
@@ -94,6 +97,7 @@ class InputTextViewWidget(context: Context, attrs: AttributeSet) : ConstraintLay
         setInputType(inputTypeFlag, isShowHidePassword)
 
         setRequired(isMandatoryLabel)
+        setEditable(isEditable)
 
         binding.inputfieldBasicInputBasic.afterTextChangeEvents()
             .skipInitialValue()
@@ -133,6 +137,15 @@ class InputTextViewWidget(context: Context, attrs: AttributeSet) : ConstraintLay
             binding.inputfieldBasicTextMandatoryCaption.visibility = VISIBLE
         } else {
             binding.inputfieldBasicTextMandatoryCaption.visibility = GONE
+        }
+    }
+
+    fun setEditable(isEditable: Boolean) {
+        if (!isEditable) {
+            binding.inputfieldBasicInputBasic.isFocusable = false
+            binding.inputfieldBasicInputBasic.isFocusableInTouchMode = false
+            binding.inputfieldBasicInputBasic.isClickable = false
+            binding.inputfieldBasicInputBasic.isCursorVisible = false
         }
     }
 

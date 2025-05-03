@@ -4,20 +4,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.containertracker.base.BaseViewModel
 import com.example.containertracker.data.container.models.Container
-import com.example.containertracker.domain.flexi.usecase.GetContainerFlexiUseCase
+import com.example.containertracker.data.user.models.User
+import com.example.containertracker.domain.tally.usecase.GetContainerTallyUseCase
+import com.example.containertracker.utils.PreferenceUtils
 import com.example.containertracker.utils.enums.FlagScanEnum
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.launch
 
 class ScanContainerTallyViewModel(
-    private val getContainerFlexiUseCase: GetContainerFlexiUseCase
+    private val getContainerTallyUseCase: GetContainerTallyUseCase
 ) : BaseViewModel() {
     val containerCode = MutableLiveData("")
     val containerLiveData = MutableLiveData<Container>()
 
     fun scanContainer(qrCode: String = "", flag: FlagScanEnum) = viewModelScope.launch {
         showLoadingWidget()
-        when (val response = getContainerFlexiUseCase(qrCode, containerCode.value, flag.type)) {
+        val user = PreferenceUtils.get<User>(PreferenceUtils.USER_PREFERENCE)
+        when (val response = getContainerTallyUseCase(qrCode, containerCode.value, flag.type, user?.id)) {
             is NetworkResponse.Success -> {
                 response.body.data.let { dataContainer ->
                     containerLiveData.value = dataContainer
@@ -34,5 +37,6 @@ class ScanContainerTallyViewModel(
 
             is NetworkResponse.UnknownError -> _serverErrorState.value = response.body
         }
+        hideLoadingWidget()
     }
 }

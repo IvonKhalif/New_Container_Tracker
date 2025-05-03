@@ -6,6 +6,8 @@ import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -14,11 +16,19 @@ import com.example.containertracker.R
 import com.example.containertracker.databinding.SquareToastFormatBinding
 import com.example.containertracker.utils.constants.ToastConstant
 import com.example.containertracker.utils.extension.showImmediately
+import com.example.containertracker.utils.response.GenericErrorResponse
 import com.example.containertracker.widget.LoadingDialogWidget
 
 abstract class BaseActivity : AppCompatActivity() {
 
     var loadingDialog: LoadingDialogWidget? = null
+    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        onActivityResult(result)
+    }
+
+    open fun onActivityResult(result: ActivityResult) {
+
+    }
 
     fun showSuccessMessage(message: String) =
         customToast(baseContext, message, ToastConstant.CUSTOM_TOAST_SUCCESS)
@@ -28,6 +38,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun showErrorMessage(throwable: Throwable) =
         customToast(this, throwable.message.orEmpty(), ToastConstant.CUSTOM_TOAST_ERROR)
+
+    fun handleErrorServerWidget(genericErrorResponse: GenericErrorResponse?) {
+        val descriptionError = genericErrorResponse?.desc ?: genericErrorResponse?.status
+        showErrorMessage(descriptionError ?: "Terjadi masalah pada server")
+    }
 
     fun customToast(context: Context, message: String, flag: String, completion: () -> Unit = {}) {
         customToast(message, flag, completion = completion)

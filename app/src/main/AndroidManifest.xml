@@ -46,6 +46,19 @@
         android:theme="@style/Theme.ContainerTracker"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.tally.pallet.list.PalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.tally.draft.TallyContainerDraftActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.tally.form.TallyFormActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+        <activity
+            android:name=".ui.tally.spm.ScanSPMActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.marking.preview.MarkingPreviewActivity"
             android:exported="false" />
         <activity
@@ -89,12 +102,13 @@
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ContainerTracker.NoActionBar"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.login.LoginActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".widget.camera.CameraActivity"
             android:exported="false"

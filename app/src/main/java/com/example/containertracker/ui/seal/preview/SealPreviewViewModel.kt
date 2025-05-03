@@ -24,13 +24,16 @@ import java.io.File
 class SealPreviewViewModel(
     private val saveSealUseCase: SaveSealUseCase,
     private val saveSealLocalSalesUseCase: SaveSealLocalSalesUseCase
-): BaseViewModel() {
+) : BaseViewModel() {
 
     // result when on-submit
     val onSuccessSubmit = ActionLiveData()
 
-    fun onSubmit(containerData: Container?, imageListData: ArrayList<GenericSelectImageUiModel>?) = viewModelScope.launch {
-        val isLocalSales = UserUtil.getDepartmentId() == RoleAccessEnum.LOCALSALES.value
+    fun onSubmit(
+        containerData: Container?,
+        imageListData: ArrayList<GenericSelectImageUiModel>?,
+        isLocalSales: Boolean
+    ) = viewModelScope.launch {
         val requestParam = withContext(Dispatchers.IO) {
             createSaveModel(containerData, imageListData)
         }
@@ -46,7 +49,7 @@ class SealPreviewViewModel(
         return SaveSealRequest(
             userId = user?.id,
             salesOrderDetailId = container?.salesOrderDetailId,
-            typeContainer= container?.typeContainer,
+            typeContainer = container?.typeContainer,
             photo1 = getBase64(imageListData, "1"),
             photo2 = getBase64(imageListData, "2"),
             photo3 = getBase64(imageListData, "3"),
@@ -59,7 +62,10 @@ class SealPreviewViewModel(
     }
 
 
-    private fun getBase64(pictures: ArrayList<GenericSelectImageUiModel>?, position: String): String? {
+    private fun getBase64(
+        pictures: ArrayList<GenericSelectImageUiModel>?,
+        position: String
+    ): String? {
         val filePath = pictures.orEmpty().firstOrNull { it.position == position }?.imageFilePath
 
         if (filePath.isNullOrBlank()) return null
@@ -82,12 +88,15 @@ class SealPreviewViewModel(
                     )
                 }
             }
+
             is NetworkResponse.ServerError -> {
                 _serverErrorState.value = response.body
             }
+
             is NetworkResponse.NetworkError -> {
                 _networkErrorState.value = response.error
             }
+
             is NetworkResponse.UnknownError -> _serverErrorState.value = response.body
         }
         hideLoadingWidget()
@@ -106,12 +115,15 @@ class SealPreviewViewModel(
                     )
                 }
             }
+
             is NetworkResponse.ServerError -> {
                 _serverErrorState.value = response.body
             }
+
             is NetworkResponse.NetworkError -> {
                 _networkErrorState.value = response.error
             }
+
             is NetworkResponse.UnknownError -> _serverErrorState.value = response.body
         }
         hideLoadingWidget()

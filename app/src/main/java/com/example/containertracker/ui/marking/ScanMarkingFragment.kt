@@ -10,6 +10,7 @@ import com.example.containertracker.data.container.models.Container
 import com.example.containertracker.databinding.FragmentScanMarkingBinding
 import com.example.containertracker.ui.flexi.ScanFlexiFragment
 import com.example.containertracker.ui.marking.form.MarkingFormBottomSheet
+import com.example.containertracker.utils.UserUtil
 import com.example.containertracker.utils.enums.FlagScanEnum
 import com.google.zxing.Result
 import kotlinx.coroutines.Dispatchers
@@ -81,12 +82,13 @@ class ScanMarkingFragment : BaseFragment(), ZXingScannerView.ResultHandler {
     }
 
     private fun handleContainerScan(container: Container) {
-        showmarkingForm(container)
+        showMarkingForm(container)
     }
 
-    private fun showmarkingForm(container: Container) {
+    private fun showMarkingForm(container: Container) {
         MarkingFormBottomSheet.newInstance(
-            container = container
+            container = container,
+            isLocalSales = UserUtil.isLocalSalesUser()
         ).apply {
             isCancelable = false
 

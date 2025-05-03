@@ -12,6 +12,7 @@ import com.example.containertracker.data.repair.ContainerRepairService
 import com.example.containertracker.data.report.ReportService
 import com.example.containertracker.data.salesorder.SalesOrderService
 import com.example.containertracker.data.seal.ScanSealService
+import com.example.containertracker.data.tally.TallyManagementService
 import com.example.containertracker.data.user.UserService
 import com.example.containertracker.utils.NetworkUtil
 import com.example.containertracker.utils.NetworkUtil.BASE_URL
@@ -32,4 +33,5 @@ val NetworkModule = module {
     single { NetworkUtil.buildService<LocalSalesService>(BASE_URL, get()) }
     single { NetworkUtil.buildService<ContainerLadenService>(BASE_URL, get()) }
     single { NetworkUtil.buildService<ContainerRepairService>(BASE_URL, get()) }
+    single { NetworkUtil.buildService<TallyManagementService>(BASE_URL, get()) }
 }

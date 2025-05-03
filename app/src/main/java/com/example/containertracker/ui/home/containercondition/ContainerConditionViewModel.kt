@@ -228,6 +228,7 @@ class ContainerConditionViewModel(
             ContainerSidesEnum.BACK -> _backConditionData.value = conditionEnum
             ContainerSidesEnum.ROOF -> _upperConditionData.value = conditionEnum
             ContainerSidesEnum.FLOOR -> _floorConditionData.value = conditionEnum
+            else -> {}
         }
     }
 

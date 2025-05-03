@@ -34,6 +34,7 @@ import com.example.containertracker.ui.login.LoginActivity
 import com.example.containertracker.utils.enums.RoleAccessEnum
 import com.example.containertracker.utils.extension.observeNonNull
 import com.example.containertracker.utils.extension.orFalse
+import com.example.containertracker.utils.response.GenericErrorResponse
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -121,7 +122,14 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 isFirstInit = true
                 viewModel.getLocations(user?.id.orEmpty())
             }
+            serverErrorState.observe(this@MainActivity) {
+                handleErrorWidget(it)
+            }
         }
+    }
+
+    private fun handleErrorWidget(genericErrorResponse: GenericErrorResponse?) {
+        showErrorMessage(genericErrorResponse?.status ?: "Terjadi masalah pada server")
     }
 
     private fun handleUpdateLocationList(list: List<Location>) {
@@ -130,7 +138,7 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 placementDropDown.setEnabledClick(true)
                 viewModel.userData.value?.let { user ->
                     when (user.departmentId) {
-                        RoleAccessEnum.CY.value, RoleAccessEnum.INFINITY.value -> {}
+                        RoleAccessEnum.CY.value, RoleAccessEnum.INFINITY.value, RoleAccessEnum.TALLY.value -> {}
                         else -> selectLocation()
                     }
                 }
@@ -229,6 +237,8 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 navView.menu.removeItem(R.id.nav_scan_local_sales)
                 navView.menu.removeItem(R.id.nav_scan_flexi)
                 navView.menu.removeItem(R.id.nav_container_tally)
+                navView.menu.removeItem(R.id.nav_scan_marking_local_sales)
+                navView.menu.removeItem(R.id.nav_scan_seal_local_sales)
             }
 
             RoleAccessEnum.INFINITY.value -> {
@@ -238,6 +248,8 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 navView.menu.removeItem(R.id.nav_slideshow)
                 navView.menu.removeItem(R.id.nav_scan_local_sales)
                 navView.menu.removeItem(R.id.nav_scan_marking)
+                navView.menu.removeItem(R.id.nav_scan_marking_local_sales)
+                navView.menu.removeItem(R.id.nav_scan_seal_local_sales)
                 navView.menu.removeItem(R.id.nav_scan_seal)
                 navView.menu.removeItem(R.id.nav_scan_isotank)
                 navView.menu.removeItem(R.id.nav_container_repair)
@@ -252,6 +264,8 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 navView.menu.removeItem(R.id.nav_scan_isotank)
                 navView.menu.removeItem(R.id.nav_container_repair)
                 navView.menu.removeItem(R.id.nav_container_tally)
+                navView.menu.removeItem(R.id.nav_scan_marking_local_sales)
+                navView.menu.removeItem(R.id.nav_scan_seal_local_sales)
             }
 
             RoleAccessEnum.TALLY.value -> {
@@ -259,10 +273,7 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 navView.menu.removeItem(R.id.nav_container)
                 navView.menu.removeItem(R.id.nav_gallery)
                 navView.menu.removeItem(R.id.nav_slideshow)
-                navView.menu.removeItem(R.id.nav_scan_local_sales)
                 navView.menu.removeItem(R.id.nav_scan_flexi)
-                navView.menu.removeItem(R.id.nav_scan_marking)
-                navView.menu.removeItem(R.id.nav_scan_seal)
                 navView.menu.removeItem(R.id.nav_scan_isotank)
                 navView.menu.removeItem(R.id.nav_container_repair)
             }
@@ -271,6 +282,8 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 navView.menu.removeItem(R.id.nav_scan_local_sales)
                 navView.menu.removeItem(R.id.nav_scan_flexi)
                 navView.menu.removeItem(R.id.nav_scan_marking)
+                navView.menu.removeItem(R.id.nav_scan_marking_local_sales)
+                navView.menu.removeItem(R.id.nav_scan_seal_local_sales)
                 navView.menu.removeItem(R.id.nav_scan_seal)
                 navView.menu.removeItem(R.id.nav_scan_isotank)
                 navView.menu.removeItem(R.id.nav_container_repair)
@@ -287,6 +300,7 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 RoleAccessEnum.CY.value -> R.id.nav_scan_marking
                 RoleAccessEnum.INFINITY.value -> R.id.nav_scan_flexi
                 RoleAccessEnum.LOCALSALES.value -> R.id.nav_scan_local_sales
+                RoleAccessEnum.TALLY.value -> R.id.nav_container_tally
                 else -> R.id.nav_home
             }
         )

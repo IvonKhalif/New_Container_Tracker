@@ -7,8 +7,10 @@ import com.example.containertracker.data.location.models.Location
 import com.example.containertracker.data.salesorder.models.SalesOrderNumber
 import com.example.containertracker.domain.location.LocationsLocalSalesUseCase
 import com.example.containertracker.domain.location.LocationsUseCase
+import com.example.containertracker.utils.UserUtil
 import com.example.containertracker.utils.enums.RoleAccessEnum
 import com.example.containertracker.utils.extension.orFalse
+import com.example.containertracker.utils.response.GenericErrorResponse
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.launch
 
@@ -22,7 +24,7 @@ class MainViewModel(
     val isContainerLaden = MutableLiveData<Boolean>().apply { value = false }
 
     fun getLocations(userId: String) {
-        if (userData.value?.departmentId.orEmpty() == RoleAccessEnum.LOCALSALES.value)
+        if (UserUtil.isLocalSalesUser() || UserUtil.isTallyUser())
             getLocationsLocalSales(userId)
         else
             getLocationList(userId)
@@ -54,12 +56,15 @@ class MainViewModel(
         viewModelScope.launch {
             when (val response = locationsLocalSalesUseCase(userId)) {
                 is NetworkResponse.Success -> {
-                    response.body.data.let {
-                        locationListLiveData.value = it
+                    val data = response.body.data
+                    if(data.isNotEmpty()) {
+                        locationListLiveData.value = data
+                    } else {
+                        _serverErrorState.value = GenericErrorResponse(status = response.body.status)
                     }
                 }
                 is NetworkResponse.ServerError -> {
-                    genericErrorLiveData.value = response.body
+                    _serverErrorState.value = response.body
                 }
                 is NetworkResponse.NetworkError -> {
                     networkErrorLiveData.value = response.error

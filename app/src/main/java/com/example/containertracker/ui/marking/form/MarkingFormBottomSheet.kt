@@ -58,6 +58,10 @@ class MarkingFormBottomSheet : BaseBottomSheet() {
         }
     }
 
+    private val isLocalSales by lazy {
+        arguments?.getBoolean(ExtrasConstant.EXTRA_IS_LOCAL_SALES, false)
+    }
+
     private val genericImageAdapter by lazy {
         GenericSelectImageAdapter {
             viewModel.onItemImageListClick(item = it)
@@ -165,6 +169,7 @@ class MarkingFormBottomSheet : BaseBottomSheet() {
         val intent = Intent(activity, MarkingPreviewActivity::class.java)
         intent.putExtra(ExtrasConstant.EXTRA_IMAGE_LIST_DATA, imageList)
         intent.putExtra(ExtrasConstant.EXTRA_CONTAINER_DATA, container)
+        intent.putExtra(ExtrasConstant.EXTRA_IS_LOCAL_SALES, isLocalSales)
         resultLauncher.launch(intent)
     }
 
@@ -227,12 +232,14 @@ class MarkingFormBottomSheet : BaseBottomSheet() {
         private const val ARG_CONTAINER_DATA = "container_data"
 
         fun newInstance(
-            container: Container
+            container: Container,
+            isLocalSales: Boolean
         ): MarkingFormBottomSheet {
             val sheet = MarkingFormBottomSheet()
 
             sheet.arguments = Bundle().apply {
                 putParcelable(ARG_CONTAINER_DATA, container)
+                putBoolean(ExtrasConstant.EXTRA_IS_LOCAL_SALES, isLocalSales)
             }
 
             return sheet

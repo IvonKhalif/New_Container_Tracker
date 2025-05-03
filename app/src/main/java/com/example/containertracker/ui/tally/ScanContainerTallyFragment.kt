@@ -1,16 +1,23 @@
 package com.example.containertracker.ui.tally
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import com.example.containertracker.R
 import com.example.containertracker.base.BaseFragment
 import com.example.containertracker.data.container.models.Container
 import com.example.containertracker.databinding.FragmentScanContainerTallyBinding
 import com.example.containertracker.ui.flexi.ScanFlexiFragment
 import com.example.containertracker.ui.flexi.ScanFlexiFragment.Companion
 import com.example.containertracker.ui.flexi.form.FlexiFormBottomSheet
+import com.example.containertracker.ui.history.detail.HistoryDetailActivity
+import com.example.containertracker.ui.login.LoginActivity
+import com.example.containertracker.ui.tally.draft.TallyContainerDraftActivity
+import com.example.containertracker.ui.tally.form.TallyFormActivity
+import com.example.containertracker.utils.constants.ExtrasConstant.EXTRA_CONTAINER_DATA
 import com.example.containertracker.utils.enums.FlagScanEnum
 import com.google.zxing.Result
 import kotlinx.coroutines.Dispatchers
@@ -53,12 +60,12 @@ class ScanContainerTallyFragment : BaseFragment(), ZXingScannerView.ResultHandle
             }
             it.serverErrorState.observe(viewLifecycleOwner) {error ->
                 handleErrorServerWidget(error)
-                ScanFlexiFragment.isProgressInput = false
+                isProgressInput = false
                 resumeCamera()
             }
             it.networkErrorState.observe(viewLifecycleOwner) {error ->
                 showErrorMessage(error)
-                ScanFlexiFragment.isProgressInput = false
+                isProgressInput = false
                 resumeCamera()
             }
         }
@@ -71,11 +78,14 @@ class ScanContainerTallyFragment : BaseFragment(), ZXingScannerView.ResultHandle
                 viewModel.containerCode.value = binding.inputContainerCode.getTextInputSearch()
                 viewModel.scanContainer(flag = FlagScanEnum.INPUT)
             }
+            buttonTallyDrafts.setOnClickListener {
+                goToTallyDrafts()
+            }
             initScanner()
         }
     }
 
-    private fun initScanner() = lifecycleScope.launch(Dispatchers.Main) {
+    private fun initScanner() =  lifecycleScope.launch(Dispatchers.Main) {
         scannerView = ZXingScannerView(requireContext())
         scannerView?.setAutoFocus(true)
         binding.containerScanner.addView(scannerView)
@@ -83,32 +93,24 @@ class ScanContainerTallyFragment : BaseFragment(), ZXingScannerView.ResultHandle
     }
 
     private fun handleContainerScan(container: Container) {
-        showTallyForm(container)
+        showSuccessMessage(getString(R.string.tally_sheet_success_scan_container_tally_message))
+        resumeCamera()
     }
 
-    private fun showTallyForm(container: Container) {
-        FlexiFormBottomSheet.newInstance(
-            container = container
-        ).apply {
-            isCancelable = false
-
-            onNext = {
-                ScanFlexiFragment.isProgressInput = false
-//                handleStatusSaved(it)
-                dismissAllowingStateLoss()
-            }
-
-            onClose = {
-                ScanFlexiFragment.isProgressInput = false
-                resumeCamera()
-            }
-        }.also {
-            it.show(parentFragmentManager, "tag")
-        }
+    private fun goToTallyDrafts() {
+        isProgressInput = false
+        val intent = Intent(activity, TallyContainerDraftActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        scannerView = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        scannerView?.stopCamera()
         scannerView = null
     }
 

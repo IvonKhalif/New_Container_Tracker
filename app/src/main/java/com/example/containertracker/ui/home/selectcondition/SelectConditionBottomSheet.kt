@@ -14,12 +14,13 @@ import com.example.containertracker.utils.enums.ConditionEnum
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class SelectConditionBottomSheet(
+    private val isContainerTally: Boolean = false,
     private val onItemClick: (ConditionEnum) -> Unit
 ) : BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomSheetSelectConditionBinding
     private val conditionAdapter by lazy {
-        SelectConditionAdapter(::onItemClicked)
+        SelectConditionAdapter(isContainerTally, ::onItemClicked)
     }
 
     override fun onCreateView(

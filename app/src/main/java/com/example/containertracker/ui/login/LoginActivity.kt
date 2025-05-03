@@ -60,7 +60,7 @@ class LoginActivity : BaseActivity() {
     private fun listener() {
         binding.buttonLogin.setOnClickListener {
             // showContainerDetail()
-            // showContainerCondition()
+//             showContainerCondition()
             viewModel.signIn(
                 binding.inputEmail.text.toString(),
                 binding.inputPassword.text.toString()

@@ -34,7 +34,8 @@ abstract class BaseFragment: Fragment() {
         activity?.let { (activity as? BaseActivity)?.handleLoadingWidget(childFragmentManager, isLoading) }
 
     fun handleErrorServerWidget(genericErrorResponse: GenericErrorResponse?) {
-        val descriptionError = genericErrorResponse?.desc ?: genericErrorResponse?.status
+        val descriptionError = if (genericErrorResponse?.desc.isNullOrBlank()) genericErrorResponse?.status.orEmpty()
+        else genericErrorResponse?.desc
         showErrorMessage(descriptionError ?: "Terjadi masalah pada server")
     }
 

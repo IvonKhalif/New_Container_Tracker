@@ -12,6 +12,7 @@ import com.example.containertracker.data.repair.ContainerRepairRepositoryImpl
 import com.example.containertracker.data.report.ReportRepositoryImpl
 import com.example.containertracker.data.salesorder.SalesOrderNumberRepositoryImpl
 import com.example.containertracker.data.seal.ScanSealRepositoryImpl
+import com.example.containertracker.data.tally.TallyManagementRepositoryImpl
 import com.example.containertracker.data.user.UserRepositoryImpl
 import com.example.containertracker.domain.container.ContainerRepository
 import com.example.containertracker.domain.containerladen.ContainerLadenRepository
@@ -25,6 +26,7 @@ import com.example.containertracker.domain.repair.ContainerRepairRepository
 import com.example.containertracker.domain.report.ReportRepository
 import com.example.containertracker.domain.salesorder.SalesOrderNumberRepository
 import com.example.containertracker.domain.seal.ScanSealRepository
+import com.example.containertracker.domain.tally.TallyManagementRepository
 import com.example.containertracker.domain.user.UserRepository
 import org.koin.dsl.module
 
@@ -42,4 +44,5 @@ val RepositoryModule = module {
     single<LocalSalesRepository> { LocalSalesRepositoryImpl(get()) }
     single<ContainerLadenRepository> { ContainerLadenRepositoryImpl(get()) }
     single<ContainerRepairRepository> { ContainerRepairRepositoryImpl(get()) }
+    single<TallyManagementRepository> { TallyManagementRepositoryImpl(get()) }
 }

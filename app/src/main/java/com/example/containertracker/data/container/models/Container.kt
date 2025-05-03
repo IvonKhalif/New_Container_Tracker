@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Container(
     @SerializedName("id_tracking_container") var id: String,
-    @SerializedName("code_container") var codeContainer: String,
+    @SerializedName("code_container") var codeContainer: String?,
     @SerializedName("unique_id_container") var uniqueId: String?,
     @SerializedName("color_container") var color: String?,
     @SerializedName("long_container") var long: String?,
@@ -35,5 +35,9 @@ data class Container(
     @SerializedName("date_fitting") var dateFitting: String?,
     @SerializedName("result_fitting") var resultFitting: String?,
     @SerializedName("max-photo") var maxPhoto: Int?,
-    @SerializedName("min-photo") var minPhoto: Int?
+    @SerializedName("min-photo") var minPhoto: Int?,
+
+    //For Container Tally
+
+    @SerializedName("id_tally_sheet") var idTallySheet: Int?
 ): Parcelable

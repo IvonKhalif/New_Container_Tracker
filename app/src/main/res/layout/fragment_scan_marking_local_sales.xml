@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModelBinding"
+            type="com.example.containertracker.ui.marking.ScanMarkingLocalSalesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/scanner_view_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.marking.ScanMarkingLocalSalesFragment">
+
+        <FrameLayout
+            android:id="@+id/container_scanner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_container"
+            app:layout_constraintBottom_toTopOf="@id/button_submit_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.containertracker.widget.SearchWidget
+            android:id="@+id/inputContainerCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/button_submit_container"
+            app:layout_constraintEnd_toStartOf="@id/button_submit_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/button_submit_container"
+            app:searchHint="@string/history_serch_hint"
+            app:searchWidgetInputText="@={viewModelBinding.containerCode}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_submit_container"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_container"
+            android:background="@drawable/background_button_green"
+            android:text="@string/general_action_submit"
+            android:textAppearance="@style/Button"
+            android:textColor="@color/white_FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

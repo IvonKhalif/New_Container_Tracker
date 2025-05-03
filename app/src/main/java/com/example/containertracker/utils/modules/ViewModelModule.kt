@@ -17,6 +17,7 @@ import com.example.containertracker.ui.isotank.form.IsoTankFormViewModel
 import com.example.containertracker.ui.localsales.ScanLocalSalesViewModel
 import com.example.containertracker.ui.login.LoginViewModel
 import com.example.containertracker.ui.main.MainViewModel
+import com.example.containertracker.ui.marking.ScanMarkingLocalSalesViewModel
 import com.example.containertracker.ui.marking.ScanMarkingViewModel
 import com.example.containertracker.ui.marking.form.MarkingFormViewModel
 import com.example.containertracker.ui.marking.preview.MarkingPreviewViewModel
@@ -24,11 +25,19 @@ import com.example.containertracker.ui.repair.ContainerRepairViewModel
 import com.example.containertracker.ui.repair.form.ContainerRepairFormViewModel
 import com.example.containertracker.ui.report.ReportViewModel
 import com.example.containertracker.ui.scanner.ScannerViewModel
+import com.example.containertracker.ui.seal.ScanSealLocalSalesViewModel
 import com.example.containertracker.ui.seal.ScanSealViewModel
 import com.example.containertracker.ui.seal.form.SealFormViewModel
 import com.example.containertracker.ui.seal.preview.SealPreviewViewModel
 import com.example.containertracker.ui.selectlocation.SelectLocationViewModel
 import com.example.containertracker.ui.tally.ScanContainerTallyViewModel
+import com.example.containertracker.ui.tally.draft.TallyContainerDraftViewModel
+import com.example.containertracker.ui.tally.form.TallyFormViewModel
+import com.example.containertracker.ui.tally.pallet.formpallet.PalletFormViewModel
+import com.example.containertracker.ui.tally.formpicture.TallyFormPictureViewModel
+import com.example.containertracker.ui.tally.pallet.ScanPalletViewModel
+import com.example.containertracker.ui.tally.pallet.list.PalletViewModel
+import com.example.containertracker.ui.tally.spm.ScanSPMViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -47,9 +56,11 @@ val ViewModelModule = module {
     viewModel { ContainerDetailViewModel(get()) }
     viewModel { HistoryContainerDetailViewModel(get()) }
     viewModel { ScanMarkingViewModel(get(), get()) }
+    viewModel { ScanMarkingLocalSalesViewModel(get()) }
     viewModel { MarkingFormViewModel() }
     viewModel { MarkingPreviewViewModel(get(), get()) }
     viewModel { ScanSealViewModel(get(), get()) }
+    viewModel { ScanSealLocalSalesViewModel(get()) }
     viewModel { SealFormViewModel() }
     viewModel { SealPreviewViewModel(get(), get()) }
     viewModel { ScanFlexiViewModel(get(), get()) }
@@ -62,4 +73,11 @@ val ViewModelModule = module {
     viewModel { ContainerRepairViewModel(get(), get()) }
     viewModel { ContainerRepairFormViewModel() }
     viewModel { ScanContainerTallyViewModel(get()) }
+    viewModel { TallyFormViewModel(get(), get()) }
+    viewModel { TallyFormPictureViewModel(get()) }
+    viewModel { ScanSPMViewModel(get()) }
+    viewModel { ScanPalletViewModel(get(), get()) }
+    viewModel { PalletFormViewModel(get(), get(), get()) }
+    viewModel { PalletViewModel(get(),get(), get()) }
+    viewModel { TallyContainerDraftViewModel(get(), get()) }
 }
