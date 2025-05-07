@@ -26,7 +26,7 @@ class ScanFlexiViewModel(
 
     private fun scanFlexiRegular(qrCode: String = "", flag: FlagScanEnum) = viewModelScope.launch {
         showLoadingWidget()
-        when (val response = getContainerFlexiUseCase(qrCode, containerCode.value, flag.type)) {
+        when (val response = getContainerFlexiUseCase(qrCode = containerCode.value.orEmpty())) {
             is NetworkResponse.Success -> {
                 response.body.data.let { dataContainer ->
                     containerLiveData.value = dataContainer

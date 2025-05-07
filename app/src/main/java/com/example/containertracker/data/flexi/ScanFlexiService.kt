@@ -14,15 +14,13 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ScanFlexiService {
-    @GET("v1/sales-order/scan-flexi/")
+    @GET("v2/sales-order/scan-flexi/")
     @Headers(ContentTypeConstant.CONTENT_TYPE_JSON)
     suspend fun getContainer(
-        @Query("qr_code") qrCode: String,
-        @Query("code_container") containerCode: String?,
-        @Query("flag") flagScan: String
+        @Query("qr_code") qrCode: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse>
 
-    @POST("v1/sales-order/scan-flexi/save")
+    @POST("v2/sales-order/scan-flexi/save")
     @Headers(ContentTypeConstant.CONTENT_TYPE_JSON)
     suspend fun saveFlexi(
         @Body request: SaveFlexiRequest

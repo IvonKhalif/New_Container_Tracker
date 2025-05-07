@@ -5,10 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.containertracker.base.BaseViewModel
 import com.example.containertracker.data.container.models.Container
 import com.example.containertracker.domain.localsales.usecase.ScanMarkingLocalSalesUseCase
-import com.example.containertracker.domain.marking.usecase.GetContainerMarkingUseCase
-import com.example.containertracker.utils.UserUtil
 import com.example.containertracker.utils.enums.FlagScanEnum
-import com.example.containertracker.utils.enums.RoleAccessEnum
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.launch
 

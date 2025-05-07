@@ -13,7 +13,7 @@ android {
         applicationId = "com.example.containertracker"
         minSdk = 24
         targetSdk = 35
-        versionCode = 2418
+        versionCode = 2419
         versionName = "2.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

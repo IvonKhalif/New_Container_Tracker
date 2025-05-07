@@ -11,8 +11,6 @@ import com.haroldadmin.cnradapter.NetworkResponse
 interface ScanMarkingRepository {
     suspend fun getContainer(
         qrCode: String,
-        containerCode: String?,
-        flag: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse>
 
     suspend fun saveMarking(request: SaveMarkingRequest):

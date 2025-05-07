@@ -3,7 +3,9 @@ package com.example.containertracker.ui.media.select_image
 import android.R.attr.bitmap
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.media.MediaScannerConnection
@@ -42,6 +44,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 /**
@@ -64,14 +69,31 @@ class SelectImageBottomSheet(
     private val cameraHelper by lazy { CameraHelper(requireContext()) }
 
     // Camera Launcher
+//    private val cameraLauncher =
+//        registerForActivityResult(ActivityResultContracts.TakePicture()) {
+//            Log.e("TAG", "cameraLauncher: $it")
+////            Log.e("TAG", "cameraLauncher: ${it.resultCode} ${it.data?.data}", )
+////            if (it.resultCode == AppCompatActivity.RESULT_OK) {
+////                onImageSelected(it.data?.data)
+////            }
+//            if (it) onImageSelected(uri)
+//        }
+
     private val cameraLauncher =
-        registerForActivityResult(ActivityResultContracts.TakePicture()) {
-            Log.e("TAG", "cameraLauncher: $it")
-//            Log.e("TAG", "cameraLauncher: ${it.resultCode} ${it.data?.data}", )
-//            if (it.resultCode == AppCompatActivity.RESULT_OK) {
-//                onImageSelected(it.data?.data)
-//            }
-            if (it) onImageSelected(uri)
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success -> // Gunakan nama yang lebih deskriptif
+            Log.e("TAG", "cameraLauncher: $success") // Log hasilnya dengan jelas
+            if (success) {
+                // Jika pengambilan gambar berhasil, URI yang diberikan sebelumnya seharusnya berisi gambar yang diambil.
+                uri?.let { imageUri ->  //gunakan uri yang sudah ada
+                    moveImageToPermanentLocation(imageUri)
+                } ?: run {
+                    // Handle kasus di mana uri adalah null (ini seharusnya tidak terjadi, tetapi lebih baik ditangani)
+                    Log.e("TAG", "URI is null after successful picture capture")
+                    // Anda mungkin ingin menampilkan pesan kesalahan kepada pengguna di sini.
+                }
+            } else {
+                Log.e("TAG", "Failed to capture image")
+            }
         }
 
     // Camera Permission Launcher
@@ -163,34 +185,32 @@ class SelectImageBottomSheet(
     }
 
     private fun chooseImage() = useContext { context ->
-        val file = if (saveImageToDirectory)
-            File(createImageUri()?.path ?: "")
-        else
-            PickImageUtils.createImageFileTemp(context)
-        if (!file.exists()) {
-            try {
-                file.createNewFile()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
+        // Membuat file sementara untuk menyimpan gambar yang diambil oleh kamera
+        val imageFile = createImageFileTemp(context)
 
-        }
-//        PickImageUtils.startPickImageActivity(it, this)
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            // Ensure that there's a camera activity to handle the intent
-            takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
-                // Continue only if the File was successfully created
-                file.also { f ->
-                    uri = FileProvider.getUriForFile(
-                        context,
-                        BuildConfig.APPLICATION_ID + CommonValues.authority,
-                        f
-                    )
-                    Log.e("TAG", "chooseImage: $uri")
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-                    cameraLauncher.launch(uri)
+        // Memastikan file berhasil dibuat
+        imageFile?.let { file ->
+            // Mendapatkan URI untuk file menggunakan FileProvider
+            val imageUri: Uri = FileProvider.getUriForFile(
+                context,
+                BuildConfig.APPLICATION_ID + CommonValues.authority,
+                file
+            )
+            uri = imageUri  // Simpan URI sementara
+
+            Log.e("TAG", "chooseImage (Temporary content://): $imageUri")
+
+            // Memulai intent untuk mengambil gambar
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
+                    // Menyediakan URI sementara sebagai lokasi penyimpanan
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+                    cameraLauncher.launch(imageUri)
                 }
             }
+        } ?: run {
+            Log.e("TAG", "Failed to create image file")
+            // Handle error
         }
     }
 
@@ -229,41 +249,6 @@ class SelectImageBottomSheet(
         )
         onImageSelected.invoke(null)
         dismiss()
-        /*showLoading(true)
-
-        CoroutineScope(Dispatchers.Main).launch {
-//            runCatching {
-                val file = FileUtil.from(usableContext, uri)
-                val result = Compressor.compress(
-                    context = usableContext,
-                    imageFile = file
-                ) {
-                    resolution(1280, 720)
-                    quality(80)
-                    size(1_048_576) // 1 MB
-                }
-
-                // result can bigger from original
-                val resultSelectedImage = if (file.length() < result.length()) {
-                    file
-                } else {
-                    result
-                }
-
-            this@SelectImageBottomSheet.showLoading(false)
-//            }.onSuccess {
-//                showLoading(false)
-            fileImageOnSelected?.invoke(resultSelectedImage)
-//                onImageSelected.invoke(resultSelectedImage)
-
-//            }.onFailure {
-//                showLoading(false)
-//            }
-        }*/
-    }
-
-    private fun showLoading(show: Boolean) {
-        (requireActivity() as? BaseActivity)?.handleLoadingWidget(childFragmentManager, show)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) =
@@ -287,7 +272,6 @@ class SelectImageBottomSheet(
     fun onPagePermissionsGranted() {
         when {
             permissions.contains(PermissionEnum.CAMERA) -> {
-//                showChangePhotoBottomSheet()
                 chooseImage()
             }
         }
@@ -297,18 +281,61 @@ class SelectImageBottomSheet(
         showPermissionRationaleModal(permissions)
     }
 
-    private fun createImageUri(): Uri? {
-        return context?.let { ctx ->
-            val resolver = ctx.contentResolver
-            val contentValues = ContentValues().apply {
-                put(MediaStore.MediaColumns.DISPLAY_NAME, "IMG_${System.currentTimeMillis()}.png")
-                put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
-                put(
-                    MediaStore.MediaColumns.RELATIVE_PATH,
-                    Environment.DIRECTORY_DCIM + "/Container Tracker/"
-                ) // Create a subfolder within DCIM    }
+    // Fungsi untuk membuat file sementara
+    private fun createImageFileTemp(context: Context): File? {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val imageFileName = "TEMP_IMG_${timeStamp}.png" // Prefix "TEMP_" untuk file sementara
+        val storageDir = context.cacheDir
+        return try {
+            File.createTempFile(
+                imageFileName,
+                ".png",
+                storageDir
+            )
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    private fun moveImageToPermanentLocation(tempUri: Uri) = useContext { context ->
+        val contentResolver = context.contentResolver
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val imageName = "IMG_${timeStamp}.png"  // Nama file permanen
+        val permanentDir = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+            "Container Tracker"
+        )
+
+        // Membuat direktori jika belum ada
+        if (!permanentDir.exists()) {
+            if (!permanentDir.mkdirs()) {
+                Log.e("TAG", "Failed to create directory: ${permanentDir.absolutePath}")
+                // Handle kegagalan membuat direktori
+                return@useContext
             }
-            resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+        }
+
+        val permanentFile = File(permanentDir, imageName)
+        val permanentUri = Uri.fromFile(permanentFile) // Dapatkan Uri untuk file permanen
+
+        try {
+            // Salin data dari Uri sementara ke Uri permanen menggunakan ContentResolver
+            val inputStream = contentResolver.openInputStream(tempUri) ?: throw IOException("Failed to open input stream")
+            val outputStream = contentResolver.openOutputStream(permanentUri) ?: throw IOException("Failed to open output stream")
+            inputStream.copyTo(outputStream)
+            inputStream.close()
+            outputStream.close()
+
+            // Hapus file sementara setelah berhasil disalin
+            contentResolver.delete(tempUri, null, null)
+            Log.e("TAG", "Image moved to: ${permanentUri.path}")
+            // Sekarang Anda memiliki URI gambar permanen (permanentUri)
+            onImageSelected(permanentUri) // Beri tahu UI bahwa gambar sudah siap.
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Log.e("TAG", "Error moving image: ${e.message}")
+            // Handle kesalahan penyalinan
         }
     }
 

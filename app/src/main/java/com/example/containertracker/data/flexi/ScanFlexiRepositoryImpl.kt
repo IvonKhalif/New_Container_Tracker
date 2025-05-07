@@ -14,7 +14,7 @@ class ScanFlexiRepositoryImpl(private val service: ScanFlexiService) : ScanFlexi
         containerCode: String?,
         flag: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse> {
-        return service.getContainer(qrCode, containerCode, flag)
+        return service.getContainer(qrCode)
     }
 
     override suspend fun saveFlexi(request: SaveFlexiRequest): NetworkResponse<RetrofitStatusResponse, GenericErrorResponse> {

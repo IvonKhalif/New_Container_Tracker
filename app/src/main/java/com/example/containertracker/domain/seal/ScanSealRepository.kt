@@ -10,9 +10,7 @@ import com.haroldadmin.cnradapter.NetworkResponse
 
 interface ScanSealRepository {
     suspend fun getContainer(
-        qrCode: String,
-        containerCode: String?,
-        flag: String
+        qrCode: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse>
 
     suspend fun saveSeal(request: SaveSealRequest):

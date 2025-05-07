@@ -2,22 +2,11 @@
 <paths>
 
     <!-- path for storing cache file type (share) -->
-    <cache-path
-        name="cache"
-        path="." />
-    <external-path
-        name="external"
-        path="." />
-    <external-files-path
-        name="external_files"
-        path="." />
-    <cache-path
-        name="cache"
-        path="." />
-    <external-cache-path
-        name="external_cache"
-        path="." />
-    <files-path
-        name="files"
-        path="." />
+    <cache-path name="cache" path="." />
+    <external-path name="external" path="." />
+    <external-files-path name="external_files" path="." />
+    <cache-path name="cache" path="." />
+    <cache-path name="internal_cache" path="/" />
+    <external-cache-path name="external_cache" path="." />
+    <files-path name="files" path="." />
 </paths>

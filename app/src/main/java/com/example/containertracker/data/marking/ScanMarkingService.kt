@@ -17,9 +17,7 @@ interface ScanMarkingService {
     @GET("v1/sales-order/scan-marking/")
     @Headers(ContentTypeConstant.CONTENT_TYPE_JSON)
     suspend fun getContainer(
-        @Query("qr_code") qrCode: String,
-        @Query("code_container") containerCode: String?,
-        @Query("flag") flagScan: String
+        @Query("qr_code") qrCode: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse>
 
     @POST("v1/sales-order/scan-marking/save")

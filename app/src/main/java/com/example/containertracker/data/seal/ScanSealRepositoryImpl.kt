@@ -11,11 +11,9 @@ import com.haroldadmin.cnradapter.NetworkResponse
 
 class ScanSealRepositoryImpl(private val service: ScanSealService) : ScanSealRepository {
     override suspend fun getContainer(
-        qrCode: String,
-        containerCode: String?,
-        flag: String
+        qrCode: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse> {
-        return service.getContainer(qrCode, containerCode, flag)
+        return service.getContainer(qrCode)
     }
 
     override suspend fun saveSeal(request: SaveSealRequest): NetworkResponse<RetrofitStatusResponse, GenericErrorResponse> {

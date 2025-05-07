@@ -264,8 +264,8 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
                 navView.menu.removeItem(R.id.nav_scan_isotank)
                 navView.menu.removeItem(R.id.nav_container_repair)
                 navView.menu.removeItem(R.id.nav_container_tally)
-                navView.menu.removeItem(R.id.nav_scan_marking_local_sales)
-                navView.menu.removeItem(R.id.nav_scan_seal_local_sales)
+                navView.menu.removeItem(R.id.nav_scan_marking)
+                navView.menu.removeItem(R.id.nav_scan_seal)
             }
 
             RoleAccessEnum.TALLY.value -> {

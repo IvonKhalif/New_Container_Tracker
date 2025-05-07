@@ -21,12 +21,12 @@ class ScanMarkingViewModel(
 
     fun getContainer(qrCode: String = "", flag: FlagScanEnum) {
         val isLocalSales = UserUtil.getDepartmentId() == RoleAccessEnum.LOCALSALES.value
-        if (isLocalSales) scanMarkingLocalSales(qrCode, flag) else scanMarkingRegular(qrCode, flag)
+        if (isLocalSales) scanMarkingLocalSales(qrCode, flag) else scanMarkingRegular()
     }
 
-    private fun scanMarkingRegular(qrCode: String = "", flag: FlagScanEnum) = viewModelScope.launch {
+    private fun scanMarkingRegular() = viewModelScope.launch {
         showLoadingWidget()
-        when (val response = scanMarkingUseCase(qrCode, containerCode.value, flag.type)) {
+        when (val response = scanMarkingUseCase(containerCode.value.orEmpty())) {
             is NetworkResponse.Success -> {
                 response.body.data.let { dataContainer ->
                     containerLiveData.value = dataContainer
@@ -45,7 +45,7 @@ class ScanMarkingViewModel(
 
     private fun scanMarkingLocalSales(qrCode: String = "", flag: FlagScanEnum) = viewModelScope.launch {
         showLoadingWidget()
-        when (val response = scanMarkingUseCase(qrCode, containerCode.value, flag.type)) {
+        when (val response = scanMarkingLocalSalesUseCase(qrCode, containerCode.value, flag.type)) {
             is NetworkResponse.Success -> {
                 response.body.data.let { dataContainer ->
                     containerLiveData.value = dataContainer

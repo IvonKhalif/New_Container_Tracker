@@ -10,11 +10,9 @@ import com.haroldadmin.cnradapter.NetworkResponse
 
 class ScanMarkingRepositoryImpl(private val service: ScanMarkingService) : ScanMarkingRepository {
     override suspend fun getContainer(
-        qrCode: String,
-        containerCode: String?,
-        flag: String
+        qrCode: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse> {
-        return service.getContainer(qrCode, containerCode, flag)
+        return service.getContainer(qrCode)
     }
 
     override suspend fun saveMarking(request: SaveMarkingRequest): NetworkResponse<RetrofitStatusResponse, GenericErrorResponse> {
