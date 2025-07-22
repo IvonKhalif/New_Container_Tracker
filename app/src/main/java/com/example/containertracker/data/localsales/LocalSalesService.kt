@@ -23,7 +23,7 @@ interface LocalSalesService {
     suspend fun getContainer(
         @Query("qr_code") qrCode: String,
         @Query("code_container") containerCode: String?,
-        @Query("status") flagScan: String
+        @Query("flag") flagScan: String
     ): NetworkResponse<RetrofitResponse<Container>, GenericErrorResponse>
 
     @POST("v2/local-sales/tracking/container/save")

@@ -67,7 +67,10 @@ class ScanSealFragment : BaseFragment(), ZXingScannerView.ResultHandler {
             inputContainerCode.enableDrawableLeft(false)
             buttonSubmitContainer.setOnClickListener {
                 viewModel.containerCode.value = binding.inputContainerCode.getTextInputSearch()
-                viewModel.getContainer(flag = FlagScanEnum.INPUT)
+                viewModel.getContainer(
+                    qrCode = viewModel.containerCode.value.orEmpty(),
+                    flag = FlagScanEnum.INPUT
+                )
             }
             initScanner()
         }

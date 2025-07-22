@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/nav_scan_marking_local_sales"
-        android:name="com.example.containertracker.ui.marking.ScanMarkingFragment"
+        android:name="com.example.containertracker.ui.marking.ScanMarkingLocalSalesFragment"
         android:label="@string/scan_marking_local_sales_title"
         tools:layout="@layout/fragment_scan_marking_local_sales" />
 
@@ -61,7 +61,7 @@
 
     <fragment
         android:id="@+id/nav_scan_seal_local_sales"
-        android:name="com.example.containertracker.ui.seal.ScanSealFragment"
+        android:name="com.example.containertracker.ui.seal.ScanSealLocalSalesFragment"
         android:label="@string/scan_seal_local_sales_title"
         tools:layout="@layout/fragment_scan_seal_local_sales" />
 

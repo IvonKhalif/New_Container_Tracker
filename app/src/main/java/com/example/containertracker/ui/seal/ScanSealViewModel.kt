@@ -21,12 +21,12 @@ class ScanSealViewModel(
 
     fun getContainer(qrCode: String = "", flag: FlagScanEnum) {
         val isLocalSales = UserUtil.getDepartmentId() == RoleAccessEnum.LOCALSALES.value
-        if (isLocalSales) scanSealLocalSales(qrCode, flag) else scanSealRegular()
+        if (isLocalSales) scanSealLocalSales(qrCode, flag) else scanSealRegular(qrCode)
     }
 
-    private fun scanSealRegular() = viewModelScope.launch {
+    private fun scanSealRegular(qrCode: String) = viewModelScope.launch {
         showLoadingWidget()
-        when (val response = getContainerSealUseCase(containerCode.value.orEmpty())) {
+        when (val response = getContainerSealUseCase(qrCode)) {
             is NetworkResponse.Success -> {
                 response.body.data.let { dataContainer ->
                     containerLiveData.value = dataContainer
